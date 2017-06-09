@@ -1,0 +1,153 @@
+{if $view_video == 'being_watch'}
+	<div class="b_w_v_con floatL">
+    	<div class="b_w_thumb">
+        	<a href="{videoLink vdetails=$video}"><img src="{getThumb vdetails=$video}" width="100" height="59" alt="{$video.title}" {ANCHOR place="video_thumb" data=$video} /></a>
+            {ANCHOR place='in_video_thumb' data=$video} 
+        </div>
+        <div class="b_w_title">
+        	<a href="{videoLink vdetails=$video}" title="{$video.title}">{$video.title|truncate:15}</a>
+        </div>
+    </div> <!--b_w_v_con end-->
+{/if}
+
+{if $view_video=="latest_video"}
+	<div class="latest_vid">	
+    	<div class="latest_vid_thumb"><a href="{videoLink vdetails=$video}"><img src="{getThumb vdetails=$video}" width="110" height="77" alt="{$video.title}" {ANCHOR place="video_thumb" data=$video} /></a>
+        <div class="vid_time">{$video.duration|SetTime}</div>
+		<img src="{$imageurl}/dot.gif" class="add_icon" style="bottom:1px;" onclick="add_quicklist(this,'{$video.videoid}')" title="Add {$video.title} to Quicklist" alt="Quicklist" />
+        {if $video.broadcast=='private'}
+        <a href="{videoLink vdetails=$video}"><span class="private_video" style="width:110px; height:77px;"></span></a>
+        {/if}
+        {ANCHOR place='in_video_thumb' data=$video} 
+        </div>
+        <div class="l_vid_title"><a href="{videoLink vdetails=$video}" title="{$video.title}">{$video.title|truncate:15}</a></div>    
+    </div> <!--video_list end-->
+{/if}
+
+{if $view_video=="random_video"}
+
+   {FlashPlayer vdetails = $video height='250' width='280' }
+
+{/if}
+
+{if $view_video == 'related'}
+	<div class="r_vdo_con {if $selected == $video.videoid} current_vid{/if}">
+    	<div class="r_vdo_thumb floatL">
+        	<a href="{videoLink vdetails=$video}"><img src="{getThumb vdetails=$video}" width="110" height="77" alt="{$video.title}" {ANCHOR place="video_thumb" data=$video} /></a>
+            <div class="vid_time">{$video.duration|SetTime}</div>
+            <img src="{$imageurl}/dot.gif" class="add_icon" style="bottom:1px;" onclick="add_quicklist(this,'{$video.videoid}')" title="Add {$video.title} to Quicklist" alt="Quicklist" />
+        {if $video.broadcast=='private'}
+        <a href="{videoLink vdetails=$video}"><span class="private_video">&nbsp;</span></a>
+        {/if}
+        {ANCHOR place='in_video_thumb' data=$video} 
+        </div>
+        <div class="r_vdo_title">
+        	<a href="{videoLink vdetails=$video}" title="{$video.title}">{$video.title|truncate:25}</a>
+        </div>
+       <div class="r_v_views">Views: {$vdo.views|number_format}</div>
+       <div class="r_v_views">Comments: {$video.comments_count|number_format}</div>
+       <div class="r_v_views">From: 
+       <a href="{$userquery->profile_link($user)}" title="{$user.username}">{$video.username|truncate:15}</a>
+       </div>
+    </div> <!--r_vdo_con end-->
+{/if}
+
+{if $view_video == "videos_page" OR $view_video == ""}
+		<div class="videos_page">
+    	<div class="v_p_thumb"><a href="{videoLink vdetails=$video}"><img src="{getThumb vdetails=$video}" width="120" height="90" alt="{$video.title}" {ANCHOR place="video_thumb" data=$video} /></a>
+        <div class="vid_time">{$video.duration|SetTime}</div>
+		<img src="{$imageurl}/dot.gif" class="add_icon" onclick="add_quicklist(this,'{$video.videoid}')" title="Add {$video.title} to Quicklist" alt="Quicklist" />
+        {if $video.broadcast=='private'}
+        	<a href="{videoLink vdetails=$video}"><span class="private_video">&nbsp;</span></a>
+        {/if}
+        {ANCHOR place='in_video_thumb' data=$video}  
+        </div> <!--v_p_thumb end-->
+ 
+        <div class="v_p_title"><a href="{videoLink vdetails=$video}" title="{$video.title}">{$video.title|truncate:15}</a></div>
+        <div class="v_p_views">From: 
+        <a href="{$userquery->profile_link($video)}" title="{$video.username}">{$video.username|truncate:10}</a>
+        </div>
+        <div class="v_p_views">Views: {$video.views|number_format}</div>
+        <div class="v_p_views">Comments: {$video.comments_count|number_format}</div>
+        <div class="v_p_rating">{show_rating class='rating_small' rating=$video.rating ratings=$video.rated_by total='10'}</div>
+    </div> <!--video_list end-->
+{/if}
+
+{if $view_video == "user_video"}
+	<div class="video_list_3">	
+    	<div class="v_thumb_3"><a href="{videoLink vdetails=$video}"><img src="{getThumb vdetails=$video}" width="120" height="90" alt="{$video.title}" {ANCHOR place="video_thumb" data=$video} /></a>
+        <div class="vid_time">{$video.duration|SetTime}</div>
+		<img src="{$imageurl}/dot.gif" class="add_icon" style="bottom:3px;" onclick="add_quicklist(this,'{$video.videoid}')" title="Add {$video.title} to Quicklist" alt="Quicklist" />
+        {if $video.broadcast=='private'}
+        <a href="{videoLink vdetails=$video}"><span class="private_video">&nbsp;</span></a>
+        {/if}
+        {ANCHOR place='in_video_thumb' data=$video} 
+        </div>
+        <div class="vid_title_2"><a href="{videoLink vdetails=$video}" title="{$video.title}">{$video.title|truncate:15}</a></div>
+        <div class="views_v_2">views&nbsp;&nbsp;{$video.views}</div>
+        {show_rating class='rating_small' rating=$video.rating ratings=$video.rated_by total='10'}     
+    </div> <!--video_list end-->
+{/if}
+
+{if $view_video == "user_videos"}
+	<div class="video_list_4">	
+    	<div class="v_thumb_4"><a href="{videoLink vdetails=$video}"><img src="{getThumb vdetails=$video}" width="85" height="59" alt="{$video.title}" {ANCHOR place="video_thumb" data=$video} /></a>
+        <div class="vid_time">{$video.duration|SetTime}</div>
+		<img src="{$imageurl}/dot.gif" class="add_icon" style="bottom:3px;" onclick="add_quicklist(this,'{$video.videoid}')" title="Add {$video.title} to Quicklist" alt="Quicklist" />
+        {if $video.broadcast=='private'}
+        <a href="{videoLink vdetails=$video}"><span class="private_video">&nbsp;</span></a>
+        {/if}
+        {ANCHOR place='in_video_thumb' data=$video} 
+        </div>
+        <div class="vid_title_3"><a href="{videoLink vdetails=$video}" title="{$video.title}">{$video.title|truncate:15}</a></div>
+        <div class="views_v_2">views&nbsp;&nbsp;{$video.views}</div>     
+    </div> <!--video_list end-->
+{/if}
+
+{if $view_video=="add_type"}
+<div class="vertical">
+<div class="the_vid_container">
+    <div class="video_thumb clearfix">
+    	{ANCHOR place='in_video_thumb' data=$video}
+        <label for="check_video_{$video.videoid}"><img src="{getThumb vdetails=$video}" width="110" height="66" border="0"  /></label>
+        {if $check_type=='array'}
+        <input type="checkbox" name="check_video[]" id="check_video_{$video.videoid}" style="position:absolute; bottom:0px; left:0px" {if $check_this} checked="checked"{/if} value="{$video.videoid}" />
+        {else}
+        <input type="checkbox" name="check_video_{$video.videoid}" id="check_video_{$video.videoid}" style="position:absolute; bottom:0px; left:0px" {if $check_this} checked="checked"{/if} value="yes" />
+        {/if}
+        <div class="duration">{$video.duration|SetTime}</div>
+</div> <!--VIDEO_THUMB END-->
+    <div class="details_block">
+        <div class="lvl1 clearfix">
+            <div class="title_add"><a href="{videoLink vdetails=$video}">{$video.title|truncate:30}</a></div>
+            
+            {show_rating class='rating_small' rating=$video.rating ratings=$video.rated_by total='10'}
+           
+        </div> <!--LVL1 END-->
+        
+        <div class="lvl2 clearfix">
+            <div class="desc">{$video.description|description|truncate:100}</div>
+            <div class="length">Time: <span>{$video.duration|SetTime:false}</span></div>
+        </div> <!--LVL2 END-->
+        
+        <div class="lvl3 clearfix">
+            <div class="views"><span>{$video.views}</span> view(<strong>s</strong>)</div>
+        </div> <!--LVL3 END-->
+        
+        <div class="lvl4 clearfix">
+            <div class="uploaded">
+             <a href="{$userquery->profile_link($video)}">{$video.username}</a>
+            </div>
+        </div> <!--LVL4 END-->
+        
+            
+    </div> <!--DETAILS_BLOCK END-->
+    <div class="clearfix"></div>
+ </div> 
+</div>
+    
+{if $only_once}
+    <div class="clearfix"></div>
+{/if}
+
+{/if}

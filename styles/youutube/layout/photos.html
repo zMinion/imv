@@ -1,0 +1,32 @@
+<div class="tasdbs">
+<ul>
+  {assign var=sorting_links value=func->sorting_links()}
+    {foreach from=$sorting_links item=name key=sort}
+    	<li {if $smarty.get.sort==$sort} class="selected"{/if}><a href="{link name=sort sort=$sort type=collections}">{$name}</a></li>
+    {/foreach}
+</ul>
+</div><!--tasdbs-->
+<div class="main_photos">
+<div class="padding">
+<div class="star_text">
+<a href="#"><img src="{$imageurl}/star.png" style="float:left; margin-right:5px; border:none;"/></a>
+<a class="text_7896" href="#">Photos »</a>
+</div><!--star_text-->
+<div class="clearfix"></div>
+<div class="photos clearfix">
+ {section name=p_list loop=$photos}
+            {include file="$style_dir/blocks/photo.html" photo=$photos[p_list] display_type="photo_page"}
+        {sectionelse}
+            {lang code='no_results_found'}
+        {/section}
+</div><!--channels-->
+<div class="clearfix"></div>
+<div class="ad_box">
+<div align="center" style="margin:5px auto; cursor:pointer;">{AD place=ad_728x90}</div>  
+</div>
+<div class="clearfix"></div>
+{include file="$style_dir/blocks/pagination.html"}
+</div><!--padding-->
+</div><!--main_photos-->
+
+

@@ -1,0 +1,9 @@
+ 
+ 
+  {"format":"image2","duration":0,"size":2390564,"bitrate":478112800,"video_width":4160,"video_height":2340,"video_wh_ratio":1.7777777777778,"video_codec":"mjpeg","video_rate":25,"video_bitrate":0,"video_color":"N\/A","audio_codec":null,"audio_bitrate":0,"audio_rate":0,"audio_channels":0,"path":"\/var\/www\/html\/files\/conversion_queue\/1481902925a76bf.jpg","rotation":0} 
+ 
+  {"format":"mov,mp4,m4a,3gp,3g2,mj2","duration":0.04,"size":268886,"bitrate":53777200,"video_width":1920,"video_height":1080,"video_wh_ratio":1.7777777777778,"video_codec":"h264","video_rate":25,"video_bitrate":53614000,"video_color":"N\/A","audio_codec":null,"audio_bitrate":0,"audio_rate":0,"audio_channels":0,"path":"\/var\/www\/html\/files\/videos\/2016\/12\/16\/1481902925a76bf-1080.mp4","rotation":0} 
+ 
+  {"format":"mov,mp4,m4a,3gp,3g2,mj2","duration":0.04,"size":17073,"bitrate":3414600,"video_width":854,"video_height":480,"video_wh_ratio":1.7791666666667,"video_codec":"h264","video_rate":25,"video_bitrate":3250600,"video_color":"N\/A","audio_codec":null,"audio_bitrate":0,"audio_rate":0,"audio_channels":0,"path":"\/var\/www\/html\/files\/videos\/2016\/12\/16\/1481902925a76bf-480.mp4","rotation":0} 
+ 
+  {"format":"mov,mp4,m4a,3gp,3g2,mj2","duration":0.04,"size":47221,"bitrate":9444200,"video_width":1280,"video_height":720,"video_wh_ratio":1.7777777777778,"video_codec":"h264","video_rate":25,"video_bitrate":9281400,"video_color":"N\/A","audio_codec":null,"audio_bitrate":0,"audio_rate":0,"audio_channels":0,"path":"\/var\/www\/html\/files\/videos\/2016\/12\/16\/1481902925a76bf-720.mp4","rotation":0}

@@ -1,0 +1,40 @@
+.T-Icon-Con { width:103px; }
+.FavButton { width:35px;}
+.RatingText { font-size:12px; color:#999; font-family:arial, Geneva, sans-serif;}
+.RatingText .error { color:#C00;}
+.vid_infos .stats { line-height:30px;}
+
+.LikeIMG { background:url(../images/thumbs-icons.png) no-repeat; width:30px; height:30px; border:none; vertical-align:middle;}
+.LikeIMG:hover { background-position:0px -30px; cursor:pointer;}
+
+.DLikeIMG { background:url(../images/thumbs-icons.png) 0px -60px no-repeat; width:30px; height:30px; border:none; vertical-align:middle;}
+.DLikeIMG:hover { background-position:0px -90px; cursor:pointer;}
+
+.greenBar { height:50%; background-color:#156200; 
+	background-image: -webkit-gradient(linear,left bottom,left top,from(#156200),to(#1e8c01));
+	background-image: -moz-linear-gradient(bottom, #156200, #1e8c01);
+	background-image: -o-linear-gradient(bottom, #156200, #1e8c01);
+	filter: progid:DXImageTransform.Microsoft.Gradient(startColorStr=#1e8c01, endColorStr=#156200); float:left; position:relative; border-right:1px solid white; }
+	
+	
+.redBar { height:50%; 	background-color:#990000; 
+	background-image: -webkit-gradient(linear,left bottom,left top,from(#990000),to(#c40000));
+	background-image: -moz-linear-gradient(bottom, #990000, #c40000);
+	background-image: -o-linear-gradient(bottom, #990000, #c40000);
+	filter: progid:DXImageTransform.Microsoft.Gradient(startColorStr=#c40000, endColorStr=#990000); float:left; position:relative; margin-right:-1px; }
+	
+.ratingText { font:normal 11px Arial; }
+.UserDisliked, .UserLiked { background:url(../images/thumbs.png) -36px -28px no-repeat; width:14px; height:14px; display:inline-block; *display:inline;  }
+.UserLiked { background-position:-6px -26px; }
+
+.ratingContainer .LikeBar { height:4px; background:#060; margin-bottom:1px;  }
+.ratingContainer .DislikeBar { height:4px; background:#C00;  }
+
+.LikeText, .DislikeText { display:block; margin-bottom:1px; }
+.LikeText { color:green; } .DislikeText { color:red; }
+
+.ratingContainer .LikeBar { height:4px; background:#060; margin-bottom:1px;  }
+.ratingContainer .DislikeBar { height:4px; background:#C00;  }
+
+.LikeText, .DislikeText { display:block; margin-bottom:1px; }
+.LikeText { color:green; } .DislikeText { color:red; }

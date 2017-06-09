@@ -1,0 +1,44 @@
+<div class="tasdbs">
+<ul>
+  {assign var=sorting_links value=func->sorting_links()}
+    {foreach from=$sorting_links item=name key=sort}
+    	<li {if $smarty.get.sort==$sort} class="selected"{/if}><a href="{link name=sort sort=$sort type=videos}">{$name}</a></li>
+    {/foreach}
+</ul>
+</div><!--tasdbs-->
+
+<div class="all_videos clearfix">
+<div class="left_catgory">
+{include file="$style_dir/blocks/category_list.html" type='video'}
+</div><!--left_catgory-->
+
+
+<div class="main_videos">
+
+<div class="padding">
+
+<div class="clearfix"></div>
+<div class="star_text">
+<a href="#"><img src="{$imageurl}/videos.png" style="float:left; margin-right:5px;border: none;"/></a>
+<a class="text_7896" href="#">Videos »</a>
+</div><!--star_text-->
+<div class="clearfix"></div>
+<div class="channels clearfix">
+{section name=v_list loop=$videos}
+            {include file="$style_dir/blocks/video.html" video=$videos[v_list] display_type=feature}
+        {sectionelse}
+            {lang code='no_results_found'}
+        {/section}         
+</div><!--browse-item-row ytg-box-->
+<div class="ad_box">
+
+<div align="center" style="margin:5px auto; cursor:pointer;">{AD place=ad_728x90}</div>  
+</div>
+<div class="clearfix"></div>
+
+  {include file="$style_dir/blocks/pagination.html"}
+
+</div><!--padding-->
+
+</div><!--main_videos-->
+</div><!--all_videos-->

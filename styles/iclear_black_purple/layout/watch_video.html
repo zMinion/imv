@@ -1,0 +1,219 @@
+{lang code='video' assign='object_type'}
+
+{assign var=user value=$userquery->get_user_details($vdo.userid)}
+<div class="w_vid_title clearfix"><span style="float:left;">{$vdo.title}</span>
+	    {if has_hq($vdo)}
+    <span id="hq" class="hq_button_cont">
+    <a href="javascript:void(0)" onclick="hq_toggle('#normal_player_cont','#hd_player_cont'); $('#hq_button').toggleClass('hq_button_sel')">
+    <img src="{$imageurl}/dot.gif" class="hq_button" border="0" id="hq_button" />
+    </a>
+    </span>
+    {/if}
+</div>
+<div class="vid_container">		
+
+                
+     <!-- START before_watch_player plugin -->
+        {ANCHOR place="before_watch_player" data=$vdo}
+    <!-- END before_watch_player plugin anchor -->
+    
+    <div id="normal_player_cont" class="player2">
+	{FlashPlayer vdetails = $vdo width="660" height="355"}
+    </div>
+    {if has_hq($vdo)}
+<div class="player_container" style="display:none" id="hd_player_cont">    
+    {FlashPlayer vdetails =$vdo width="660" height="355" player_div='hd_div' hq=true}
+</div>
+{/if}
+
+    
+        <div class="actions clearfix full_round_5">
+        <div class="action_title">Video Action</div>
+        <div class="act">
+		<div class="ad_f">
+			<a href="javascript:void(0)" title="{lang code='add_to_favs'}" onclick="slide_up_watch_video('#video_action_result_cont');add_to_fav('video','{$vdo.videoid}');">{lang code='add_to_favs'}</a>
+        </div>
+        
+        <div class="report">
+        <a href="javascript:void(0)" title="{lang code='report_this'}" onclick="slide_up_watch_video('#flag_item');$('#flag_item').slideToggle();">{lang code='report_this'}</a>
+        </div>
+        
+        <div class="ad_p">
+		<a href="javascript:void(0)" title="{lang code='add_to_playlist'}" onclick="slide_up_watch_video('#playlist_form');$('#playlist_form').slideToggle();">{lang code='add_to_playlist'}</a>
+        </div>
+        
+        <div class="share_p">
+		<a href="javascript:void(0)" title="{lang code='share_this'}" onclick="slide_up_watch_video('#share_form');$('#share_form').slideToggle();">{lang code='share_this'}</a>
+        </div>
+        </div>
+    </div> <!--actions end-->  
+    
+
+    
+<div class="video_action_result_boxes">
+    {show_flag_form id=$vdo.videoid type=Video}
+    <div class="action_box full_round_5" style="display:none" id="video_action_result_cont"></div>
+    {show_playlist_form id=$vdo.videoid type=Video}
+    {show_share_form id=$vdo.videoid type=Video}
+</div>  
+    
+<!-- Video Comments -->
+<div id="commentsContainer">
+	<h2 class="commentHead">{lang code='comments'} ({$vdo.comments_count})</h2>
+    
+    <div id="comments"></div>
+    <script>
+		$(document).ready(function()
+		{ldelim}		
+			comments_voting = '{$vdo.comment_voting}';	
+			getComments('video','{$vdo.videoid}','{$vdo.last_commented}',1,'{$vdo.comments_count}','{$object_type}')
+		{rdelim}
+		);
+	</script>
+    
+    {if $myquery->is_commentable($vdo,'v')}
+    	{include file="$style_dir/blocks/comments/add_comment.html" id=$vdo.videoid type=v}
+    {else}
+    	<div class="disable_msg" align="center">{lang code='comm_disabled_for_vid'}</div>
+    {/if}
+    <div class="clearfix"></div>
+</div>
+<!-- Video Comments -->
+</div> <!--vid_container end-->
+
+<div class="watch_r_con">
+
+    <div class="small_con clearfix full_round_5">   	
+    	<div class="action_title">Video Information</div>
+        <div class="u_by_right">
+        <div class="upload_by"><a href="{$userquery->profile_link($vdo)}" title="{$user.username}">{$user.username|truncate:15}</a></div>
+    	<div class="small_thumb clearfic"><a href="{$userquery->profile_link($vdo)}"><img src="{$userquery->getUserThumb($user)}" width="75" height="75" alt="{$user.username}" /></a></div>
+            {if !$userquery->is_subscribed($user.userid)}
+            <div class="subscribe full_round_5" onClick="subscriber('{$vdo.userid}','subscribe_user','video_action_result_cont')">{lang code='subscribe'}</div>
+            {else}
+            <div class="subscribe full_round_5" onClick="subscriber('{$vdo.userid}','unsubscribe_user','video_action_result_cont')">{lang code='unsubscribe'}</div>
+            {/if}        
+        <div class="user_vdo">Videos ({$user.total_videos})</div>
+        <div class="user_vdo">Subscriber ({$user.subscribers})</div>
+        </div>
+   <div class="u_by_con">
+       <div class="v_views">{lang code="added"}: <strong>{$vdo.date_added|nicetime}</strong></div>
+       <div class="v_views">Runtime: <strong>{$vdo.duration|SetTime}</strong></div>
+       <div class="v_views">{lang code="views"}: <strong>{$vdo.views|number_format}</strong></div>
+       <div class="v_views">{lang code="comments"}: <strong>{$vdo.comments_count|number_format}</strong></div>
+       <div class="rating_container clearfix" style="margin-top:8px;">
+       {show_video_rating  rating=$vdo.rating ratings=$vdo.rated_by total='10' id=$vdo.videoid type=video}
+       </div>
+   </div>
+<div class="clearfix"></div>
+   <div class="vdo_dec"><strong>{lang code="vdo_desc"}</strong><br />
+   <span style="color:#717171;">{$vdo.description|description|truncate:80}</span>
+   </div>
+   <div class="cat_tag_con">
+        <div class="genre"><strong>{lang code="categories"}</strong><br />   
+        {$vdo.category|categories:video}
+        </div>
+	</div>
+   <div class="cat_tag_con">
+    	<div class="genre"><strong>{lang code="tags"}</strong><br />
+        {$vdo.tags|tags:videos}
+        </div>
+	</div>
+    
+            <div class="video_details videosharing full_round_5">
+{if $Cbucket->configs.video_embed==1 && $vdo.allow_embedding=='yes'}
+
+<label for="embed_code" style="font-size:12px; font-weight:bold">{lang code='embed_code'}</label>
+<textarea name="embed_code" id="embed_code" style="margin-bottom:5px; width:99%; height:auto" onclick="this.select()"  class="left_text_area">{if $Cbucket->configs.embed_type=='iframe'}{$cbvid->embed_code($vdo,'iframe')|htmlspecialchars}{else}{$cbvid->embed_code($vdo,'embed_object')|htmlspecialchars}{/if}</textarea>
+
+<input type="hidden" name="alternate_embed_code" id="alternate_embed_code" value="{if $Cbucket->configs.embed_type=='iframe'}{$cbvid->embed_code($vdo,'embed_object')|htmlspecialchars}{else}{$cbvid->embed_code($vdo,'iframe')|htmlspecialchars}{/if}" />
+
+
+<label><strong>Player size</strong></label><br /> 
+
+  <label>
+    <input type="radio" name="player_size" value="default" id="player_size_0" checked="checked"
+    	onclick="{$updateEmbedCode}('{$Cbucket->configs.embed_player_width}'
+        		,'{$Cbucket->configs.embed_player_height}',autoPlayEmbed)"/>
+    Default ({$Cbucket->configs.embed_player_width}x{$Cbucket->configs.embed_player_height})</label><br />
+  
+  <label>
+    <input type="radio" name="player_size" value="small" id="player_size_1" onclick="{$updateEmbedCode}('440','272',autoPlayEmbed)" />
+    Small (440x272)
+</label><br />
+  
+  <label>
+    <input type="radio" name="player_size" value="medium" id="player_size_2"  onclick="{$updateEmbedCode}('540','334',autoPlayEmbed)"/>
+    Medium (540x334)
+</label><br />
+
+  <label>
+    <input type="radio" name="player_size" value="large" id="player_size_3"  onclick="{$updateEmbedCode}('600','370',autoPlayEmbed)"/>
+    Large (600x370)</label><br />
+    
+{if $pakplayer=='yes'}
+<div>
+<label><strong>Autoplay video</strong></label><br />
+<label><input type="radio" name="autoplay" value="yes" onclick="{$updateEmbedCode}(embedPlayerWidth,embedPlayerHeight,'yes')" {if $Cbucket->configs.autoplay_embed=='yes'} checked{/if} />Yes</label><br />
+						<label><input type="radio" name="autoplay" value="no"  onclick="{$updateEmbedCode}(embedPlayerWidth,embedPlayerHeight,'no')" {if $Cbucket->configs.autoplay_embed!='yes'} checked{/if}/>No</label></div>
+{/if}
+<div>
+<label><strong>Embed type</strong></label> <br />
+<label><input type="radio" name="embed_type" value="iframe" onclick="switchEmbedCode('iframe')" {if $Cbucket->configs.embed_type=='iframe'} checked{/if} />Iframe</label><br />
+						<label><input type="radio" name="embed_type" value="iframe"  onclick="switchEmbedCode('embed_object')" {if $Cbucket->configs.embed_type=='embed_object'} checked{/if}/>Embed Object</label></div>
+
+{/if}
+      <br />
+      <label for="link_video"><strong>{lang code='link_this_video'}</strong><br />
+      </label>
+      <input type="text" name="link_video" id="link_video" style="width:99%;margin-bottom:5px; " value="{videoLink vdetails=$vdo}"  onclick="this.select()"/>
+      
+      {if $Cbucket->configs.video_download==1 && $cbvid->downloadable($vdo)}
+      	<label><a href="{videoLink vdetails=$vdo type=download}">{lang code='click_to_download_video'}</a></label>
+      {/if}
+</div>
+     
+   </div> <!--small_con end-->
+    
+
+
+<!-- Playlist -->
+{include file="$style_dir/blocks/playlist_box.html" selected=$vdo.videoid }
+<!-- Playlist End--> 
+
+
+	<div class="d_buttons">
+    	<div class="comment_b selected" rel="user_videos" onclick="ToggleDetails(this,'.d_buttons div');">User</div>
+    	<div class="v_details" rel="related_videos" onclick="ToggleDetails(this,'.d_buttons div');">Related</div>
+    </div>
+    
+   <!-- Getting Related videos -->
+{assign var=videos_items_columns value=func->config(videos_items_columns)}
+{get_videos nonuser=$vdo.userid exclude=$vdo.videoid limit=20 order="date_added ASC" assign=related_vids}
+<!-- Related Videos based on category, please remove * and also above smarty function -->
+{* get_videos category=$vid_cat nonuser=$vdo.userid exclude=$vdo.videoid limit=$videos_items_columns order="date_added ASC" assign=related_vids *}
+
+{if $related_vids}
+<div class="r_v_con full_round_5" id="related_videos" style="display:none"> 
+	<div class="r_v_con_inner">
+        {section name=uvlist loop=$related_vids}
+            {include file="$style_dir/blocks/video.html" video=$related_vids[uvlist] view_video="related"}
+        {/section}
+	</div>
+</div> 
+{/if}
+
+
+
+{get_videos user=$vdo.userid limit="20" assign=user_vids exclude=$vdo.videoid}
+{if $user_vids}
+<div class="r_v_con full_round_5" id="user_videos" style="display:block">
+	<div class="r_v_con_inner">
+        {section name=uvlist loop=$user_vids}
+            {include file="$style_dir/blocks/video.html" video=$user_vids[uvlist] view_video="related"}
+        {/section}
+	</div>
+</div>      
+{/if}    
+
+</div> <!--watch_r_con end-->

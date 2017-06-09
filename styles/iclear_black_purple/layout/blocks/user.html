@@ -1,0 +1,49 @@
+{if $view_user == "randam_channel"}
+    <div class="r_u_con">
+        <div class="r_u_thumb">
+            <a href="{$userquery->profile_link($user)}"><img src="{$userquery->getuserthumb($user)}" width="80" height="60" /></a>
+            </div>
+        <div class="r_u_name"><a href="{$userquery->profile_link($user)}" title="{$user.username}">{$user.username|truncate:10}</a></div>
+    </div> <!--r_u_con end-->
+{/if}
+
+{if $view_user == "u_channel"}
+    <div class="user_con">    	
+    	<div class="user_thb_con">
+        	<div class="user_thb"><a href="{$userquery->profile_link($user)}"><img src="{$userquery->getuserthumb($user)}" width="100" height="100" /></a></div>
+        </div>
+        <div class="v_p_title"><a href="{$userquery->profile_link($user)}" title="{$user.username}">{$user.username|truncate:15}</a></div>
+        <div class="v_p_views">Video: {$user.total_videos|number_format}</div>
+        <div class="v_p_views">Views: {$user.profile_hits|number_format}</div>
+        <div class="v_p_views">Subscribers: {$user.subscribers|number_format}</div>
+        <div class="v_p_views">Login: {$user.last_logged|nicetime}</div>
+    </div> <!--user_con end-->
+{/if}
+
+{if $view_user == "subscriptions"}
+    <div class="u_subs_con full_round_5" align="center">
+        <div class="subs_thumb">
+            <div class="u_subs_thumb"><a href="{$userquery->profile_link($user)}"><img src="{$userquery->getuserthumb($user)}" width="50" height="60" /></a></div>
+            </div>
+        <div class="subs_u_name"><a href="{$userquery->profile_link($user)}" title="{$user.username}">{$user.username|truncate:10}</a></div>
+    </div> <!--u_subs_con end-->
+{/if}
+
+{if $view_user == "g_member" OR $view_user == ""}
+<div class="g_u_member">
+        <div class="g_u_thumb_con">
+        	<div class="g_u_thumb"><a href="{$userquery->profile_link($user)}"><img src="{$userquery->getuserthumb($user)}" width="75" height="75" /></a></div>
+        </div>
+    <div class="g_u_name"><a href="{$userquery->profile_link($user)}" title="{$user.username}">{$user.username|truncate:10}</a></div>
+    <div class="user_vid">Video: <strong>{$user.total_videos|number_format}</strong></div>
+    <div class="user_vid">Views: <strong>{$user.profile_hits|number_format}</strong></div>
+</div>
+{/if}
+
+{if $view_user == "topic_view"}
+<div class="g_u_member">
+        <div class="g_u_thumb_con">
+        	<div class="g_u_thumb"><a href="{$userquery->profile_link($user)}"><img src="{$userquery->getuserthumb($user)}" width="75" height="75" /></a></div>
+        </div>
+</div>
+{/if}

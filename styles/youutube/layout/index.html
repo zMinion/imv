@@ -1,0 +1,224 @@
+<div class="main_index">
+<div class="left_side">
+<div id="guide-builder-promo">
+
+<div class="clearfix"></div>
+  <div class="pages">
+    <ul>
+        {if !$userquery->login_check('',true)}
+        {lang code='after_meny_guest_msg' assign='guestmsg'}
+        {link name=login assign='loginlink'}
+         
+        <h2>Sign in to add channels to your homepage</h2> 
+<div class="accunts">                 
+<ul>
+<li class="button_1"><a href="{link name='signup'}">Sign In</a></li> 
+<li class="button_2"><a href="{link name='signup'}">Create Account</a></li>
+</ul>
+</div>	
+        {else}
+       <div class="button_3">
+       <ul><li><a href="{link name='upload'}">Upload video</a></li></ul></div> 
+        
+        <div class="accunts_2 clearfix">
+        
+<a href="{$userquery->profile_link($userquery->udetails)}"><img src="{avatar details=$u}" width="100" height="88" style="float:left;border-radius: 2px 2px 2px 2px; margin-right:5px; border:none;" /></a>
+ 
+        
+        	<li><a href="{link name='my_account'}">{lang code='com_my_account'}</a></li>          	
+        	<li><a href="{$userquery->profile_link($userquery->udetails)}">{lang code='com_my_channel'}</a></li>
+        	<li><a href="{link name='my_videos'}">{lang code='com_my_videos'}</a></li>
+        	<li><a href="{link name='my_favorites'}">{lang code='Favorites'}</a></li>
+        	<li><a href="{link name='my_playlists'}">{lang code='playlists'}</a></li>
+        	
+            <li><a href="{link name='logout'}">Logout</a></li> 
+
+         <li><a href="{link name='my_contacts'}">{lang code='friend_requests'} ({$userquery->get_pending_contacts($userquery->userid,0,true)})</a></li> 
+
+               </div>
+          
+                
+            {/if}
+        
+            </ul>
+            </div>
+</div><!--guide-builder-promo-->
+<div class="nav_bar">
+<ul>
+{cbMenu echo='yes'}
+
+
+</ul>
+</div><!--nav_bar-->
+<div class="channel clearfix"> 
+  	{get_users assign=users limit="5" order=" doj DESC"}
+      {section name=u_list loop=$users}
+        {include file="$style_dir/blocks/user.html" user=$users[u_list] block_type=IndexUser}
+    {sectionelse}
+    	{lang code='no_results_found'}
+    {/section} 
+</div><!--channel-->
+<div class="side_bar clearfix">
+
+
+</div><!--side_bar-->
+</div><!--left_side-->
+
+<div class="right_side">
+{if isSectionEnabled('videos') ||  isSectionEnabled('photos')}
+ {include file="$style_dir/blocks/subscriptions.html"}
+  {/if}
+    
+<div class="black_right">
+<div class="image_81"></div>
+<div class="text_91">Videos</div>
+
+
+{if isSectionEnabled('videos')}
+<div class="tabs">
+<ul>
+   <li class="selected"><a href="javascript:void(0)" id="watched" onclick="get_video('recent_viewed_vids','#index_vid_container')">{lang code='being_watched'}</a></li>
+   <li><a href="javascript:void(0)" id="most_watched" onclick="get_video('most_viewed','#index_vid_container')">{lang code='most_viewed'}</a></li>
+   <li><a href="javascript:void(0)" id="recently_watched" onclick="get_video('recently_added','#index_vid_container')">{lang code='recently_added'}</a></li>
+</ul>    	
+</div> <!--TABS END-->
+
+</div><!--black_right-->
+
+<div class="box">
+
+
+<div class="main_vids clearfix">
+<div id="style_change">
+<div id="grid" onclick="ToggleView(this);" title="Change To Grid Style"></div> 
+<div id="list" onclick="ToggleView(this);" title="Change to List Style"></div>
+
+</div> <!--STYLE_CHANGE END-->
+
+<div id="index_vid_container" style="display:block;">
+
+</div>
+
+
+</div> <!--MAIN_VIDS END-->
+<div class="main_vid_shadow"></div>
+<div style="height:5px;"></div>
+{/if}
+
+</div><!--box-->
+
+
+<div class="black_right">
+<div class="image_81"></div>
+<div class="text_91">Photos</div>
+
+
+    
+{if isSectionEnabled('photos')}
+<div class="tabs">
+      <ul>
+            <li class="selected"><a href="javascript:void(0)" id="watched" onclick="getAjaxPhoto('last_viewed','#index_pho_container')">{lang code='being_watched'}</a></li>
+            <li><a href="javascript:void(0)" id="most_watched" onclick="getAjaxPhoto('most_viewed','#index_pho_container')">{lang code='most_viewed'}</a></li>
+            <li><a href="javascript:void(0)" id="recently_watched" onclick="getAjaxPhoto('most_recent','#index_pho_container')">{lang code='recently_added'}</a></li>
+       </ul>    	
+</div> <!--TABS END-->
+
+</div><!--black_right-->
+<div class="box">
+
+ <div class="main_vids clearfix">
+    
+       <div id="index_pho_container">
+       
+       </div>
+        
+
+    </div> <!--MAIN_VIDS END-->
+     <div class="main_vid_shadow"></div>
+     <div style="height:5px;"></div>
+    {/if}
+
+</div><!--box-->
+</div><!--right_side-->
+
+<div class="last_side">
+
+<div class="ad_box">
+<span style="color: #1C62B9;font-size: 10px; font-weight:bold; display:block; text-align:center;">ADVERTISEMENT</span> 
+<div align="center" style="margin:5px auto; cursor:pointer;">{AD place=ad_300x250}</div>  
+</div>
+
+<div class="feature_videos clearfix">
+
+<div class="feature_vidios">
+<li style="font-size: 11px;font-weight: normal;margin-top:0;list-style:none;color:#666666;margin-left: 11px;">Feature Videos</li></div>
+    
+{get_videos assign=feature_vid featured="yes" limit=4 order=RAND()}
+{section name=feat_vid loop=$feature_vid}
+{include file="$style_dir/blocks/video.html" video=$feature_vid[feat_vid] display_type='featured_video'}
+{/section}
+
+
+</div><!--feature_videos-->
+
+<div class="Top10users clearfix">
+   
+ 
+<div class="top_users"><li>{lang code='Top users'}</li></div>
+{get_users assign=topusers limit=9 order=' total_videos DESC '}
+{section name=tusers loop=$topusers}
+<div class="boby"> 
+
+<div class="rank"><li class="selected">{$smarty.section.tusers.iteration}</li></div>
+
+<div class="avatar">
+<a href="{$userquery->profile_link($topusers[tusers])}"><img src="{$userquery->getuserthumb($topusers[tusers],'small')}" width="30" height="30" border="0" class="vsmall_thumb" /></a></div>
+
+<div class="text_2514">
+<div class="utitle"><a href="{$userquery->profile_link($topusers[tusers])}">{$topusers[tusers].username|truncate:10}</a></div><!--utitle-->
+<div class="views">{lang code='views'} : {$topusers[tusers].profile_hits|number_format} - {lang code='videos'} : {$topusers[tusers].total_videos|number_format}</div>
+</div><!--text_2514-->
+
+</div><!--boby-->
+{/section} 
+ 
+</div><!-- Top10users-->
+
+
+
+
+
+
+
+
+
+
+</div><!--last_side-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div><!--main_index-->

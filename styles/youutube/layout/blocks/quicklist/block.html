@@ -1,0 +1,58 @@
+<div  class="quicklist_box">
+{assign var=quicklist value=$cbvid->get_quicklist()}
+<div class="quicklist_box_head">
+<div class="moveL">
+    <button class="PlayButton efe_fff moveL" onclick="openURL('{videoLink vdetails=$quicklist.0}')">
+    	<img src="{$imageurl}/dot.gif" class="PlayIcon" />
+    </button>
+</div>
+ <div class="moveL" style=" font-weight:normal;  border-right:1px solid #999; padding-right:5px;  color: #666666;
+    font-size: 155%;
+    margin: 0 8px;">
+ 	{lang code=''}({$cbvid->total_quicklist()})
+ </div> 
+ <div class="moveL" style="margin-left:5px; border-right:1px solid #999; padding-right:5px;">
+ 	<a href="javascript:void(0)" onClick="clear_quicklist()" >{lang code='remove'}</a>
+ </div>
+
+<a href="javascript:void(0)" class="QuickButton moveR" onclick="quick_show_hide_toggle('#quicklist_cont'); $('#QickList').toggleClass('QuickIconClosed')">
+
+    <button class="QuickIcon{if $smarty.cookies.quick_list_box == 'hide'} QuickIconClosed{/if}" id="QickList"></button>
+
+</a> 
+
+
+
+</div>
+
+<div id="quicklist_cont" class="clearfix" style="display:none; margin-top:3px;">
+
+{if $quicklist}
+
+
+
+<div class="clearfix" style=" position:relative; ">
+
+
+
+    <ul id="quicklistjs" class="jcarousel-skin-tango IndexNextPre">
+
+        {foreach from=$quicklist item=vid name='quickIteration'}       
+
+            {assign var=item value=$cbvid->get_video_details($vid)}                     
+
+            {include file="$style_dir/blocks/quicklist/quicklist_video.html" video=$item iteration=$smarty.foreach.quickIteration.iteration selected=$selected}
+
+        {/foreach}
+
+    </ul>    
+
+
+
+</div>
+  
+{/if}
+
+</div>
+
+</div>

@@ -1,0 +1,125 @@
+<div style="height:8px;"></div>
+
+<div class="myaccount_full clearfix" style="background:#fff">
+<div class="serch_photo" style="width:658px; float:left; margin-right:10px;">
+<div id="simple_search" class="sinup_container SearchTopIE" style="padding:6px;">
+    <form name="search-form" method="get" action="">
+        <span class='title'>{$title} {lang code='search'} &#8211;</span>
+        <input type="text" name="query" value="{'query'|get_form_val:true}" id="query" class="input_text" />
+        <span class='title'>Content {lang code='type'}</span>
+        <select name="type" id="SearchType" class="input_text">
+            {foreach from=$Cbucket->search_types item=t key=stypes}
+                <option value="{$stypes}" {if $smarty.get.type==$stypes} selected="selected"{/if}>{$stypes}</option>
+            {/foreach}
+        </select>
+        <input type="submit" name="cbsearch" id="cbsearch" value="Search" class="cb_button" style="display:inline; padding:2px;" />
+    </form>
+</div>
+    
+	<div class="signup_container clearfix" style="overflow:visible; display:none;" id="advance_search">
+	{foreach from=$Cbucket->search_types item=search_type key=search_type_key}
+      {if $search_type}
+		{assign var='type' value=$cbsearch->init_search($search_type_key)}
+          {if $type}
+            {assign var='types' value=$type->search_type}
+            {foreach from=$types key=stype item=search}
+             <div id="{$stype}" class="search_type moveL" style="width:300px;">
+             {lang code='search_for_s' assign='searchfor'}
+				<h2 class="cleard">{$searchfor|sprintf:$search.title}</h2>
+                <div>
+                <form name="search-form-{$search.title}" method="get" action="">
+                <input type="hidden" name="type" value="{$stype}" />
+                    {foreach from=$search.fields item=field}
+                        <span id="{$field_id}" style="width:150px; display:block; font-weight:bold;">{$field.title}</span>
+                        {ANCHOR place=$field.anchor_before}{$formObj->createField($field)}
+                        <div class="break2"></div>
+                    {/foreach}
+                    <label for="button"></label>
+                    <input type="submit" name="cbsearch" id="cbsearch" value="Search" class="cb_button" onmouseover="this.style.cursor='pointer'" />
+                </form>
+                </div>
+              </div>
+            {/foreach}
+          {/if}
+      {/if}
+	{/foreach}
+    </div>
+<div>
+    <div class="moveL">
+    	<div class="SearchTitle">{$search_type_title}</div>
+    </div>
+    <div class="moveR">
+    	<div class="button_opec" style="margin-right: -5px;margin-top: 13px;line-height:24px;">
+    
+        <a href="javascript:void(0)" onClick="showAdvanceSearch('simple_search','advance_search');" style="text-decoration:none;">{lang code='com_advance_results'}</a>
+        </div>
+    </div>
+<div class="break2"></div>    
+<div style="padding:8px;">
+	<div id="five_vids" class="vids_con clearfix">    
+    {if $results}
+        {foreach item=result from=$results}
+        {assign var=$template_var value =$result}
+        	{include file="$display_template" clearfix='no' }
+        {/foreach}
+        {else}
+        <div id="result_cont"><div class="error">{lang code='no_results_found'}</div></div>
+    {/if}
+    </div>
+</div>    
+    <div class="clearfix"></div>
+</div>
+<div class="break2"></div>
+{include file="$style_dir/blocks/manage/user_account_pagination.html"}
+</div> <!--moveL End-->
+<div class="city" style="float:left; width:250px;">
+<div class="TPhotoCon" style="margin-top:0px;">
+	<div class="MPhotoTitle">Featured Videos</div>
+    
+{get_videos assign=feature_vid featured="yes" limit=4 order=RAND()}
+{section name=feat_vid loop=$feature_vid}
+{include file="$style_dir/blocks/video.html" video=$feature_vid[feat_vid] display_type='featured_video'}
+{/section}
+</div> <!-- TPhotoCon End --> 
+
+{get_photos assign=feature_photo featured="yes" limit="5" order=RAND()}    
+<div class="TPhotoCon">
+	<div class="MPhotoTitle">Featured Photos</div>
+{get_photos assign=uphotos user=$photo.userid exclude=$photo.photo_id order=RAND() limit='5'}
+{if $uphotos}
+<div style="height:5px; clear:both"></div>
+<div class="PhotoHeading hover" onclick="$('#morePhotos').slideToggle('fast');"></div>
+<div id="morePhotos">
+{section name=list loop=$uphotos}
+	{include file="$style_dir/blocks/photo.html" display_type="related_photos" photo=$uphotos[list]}
+{/section}
+</div>
+{/if}
+</div> <!-- TPhotoCon End --> 
+	
+</div>
+
+</div><!--myaccount_full-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

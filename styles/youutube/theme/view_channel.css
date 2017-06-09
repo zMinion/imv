@@ -1,0 +1,129 @@
+/* COMMON */
+.channel_box { padding:6px 6px; background:#EFF4FC; margin:0px; border:1px solid #C6D1EB; }
+.channel_inner_box { padding:5px; background:#FFF; border:1px solid #ccc; }
+
+/* CHANNEL_TOP */
+
+.usr_channel { margin-left:5px; margin-top:8px; font-size:14px;  }
+ul.top_channel_links { margin:15px 0px 0px; padding:0px; }
+ul.top_channel_links li { font-size:14px; font-weight:bold; float:left; margin:0px 10px; list-style:none; }
+ul.top_channel_links li a { padding:6px; color:#4272DB; text-decoration:none; -moz-border-radius:3px; -webkit-border-radius:3px; border-radius:3px; -khtml-border-radius:3px; }
+ul.top_channel_links li a:hover, ul.top_channel_links li a.selected, ul.top_channel_links li.selected a { background:#E7ECFA; }
+
+/* CHANNEL LEFT */
+.usr_small_thumb { width:35px; height:35px; }
+.channel_name { font-size:13px; font-size:11px; font-family:Tahoma,Verdana,sans-serif; color:#000; font-weight:bold }
+.channel_heading { font-size:14px; font-weight:bold; margin-bottom:5px; }
+.show_info { padding:3px 0px; border-bottom:1px dotted #ccc; }
+.show_info .info_N { font-weight:bold; }
+
+.UploadTitle { font-size:13px; font-weight:bold; color:#000;}
+.MPhoTitle_2 { font-size:12px; margin:5px 0px; font-weight:bold;}
+.MPhoTitle_2 a { color:#666; text-decoration:none; display:block;}
+.MPhoTitle_2 a:focus{ outline:3px solid #E7ECFA; background:#E7ECFA; -moz-outline-radius:3px; -webkit-outline-radius:3px; outline-radius:3px; -khtml-outline-radius:3px;}
+.SeeAllVideos a { color:#333;} .SeeAllVideos a:hover { text-decoration:none;}
+
+.pro_details{background:#fff; border:1px #ccc solid; padding:5px;}
+.pro_title{ font-size:18px; font-weight:bold; font-family:Calibri; margin:5px; margin-bottom:10px;}
+.details_con{ border-bottom:1px #7e7e7e dotted; margin:auto; padding-bottom:1px; margin-bottom:3px;}
+.full_name{ color:#4f4f4f; float:left;}
+
+.CMoreLinks a, .little_small a, .CMoreLinks a{ color:#0033cc; text-decoration:none;}
+.CMoreLinks a:hover, .little_small a:hover, .CMoreLinks a:hover { text-decoration:underline;}
+.CMoreLinks a:focus, .little_small a:focus, .CMoreLinks a:focus, .CMoreLinks a:active, .little_small a:active, .CMoreLinks a:active{ outline:3px solid #E7ECFA; background:#E7ECFA; -moz-outline-radius:3px; -webkit-outline-radius:3px; outline-radius:3px; -khtml-outline-radius:3px;}
+
+
+/* CHANNEL RIGHT */
+.right_column { float:right; width:71%;}
+
+/* SUBSCRIBERS */
+.user_block_small { margin-right:8px; margin-bottom:2px; }
+.user_mid_thumb { width:75px; height:75px; border:1px solid #9b9b9b;}
+
+.ChannelSubcr { margin-top:2px; margin-left:8px;}
+.ChannelSubcr a { text-decoration:none; font-weight:normal; font-style:normal; color:#000; font-size:13px;}
+
+.channelAjaxMoreLink a{ color:#000; text-decoration:none;} .channelAjaxMoreLink a:hover { text-decoration:underline;}
+
+.wv_actions { padding:0px; margin:0px; border:1px solid #ccc; -moz-border-radius:3px; -webkit-border-radius:3px; border-radius:3px; -khtml-border-radius:3px; background:#fff; }
+ul#wv_actions_links { padding:8px 10px; margin:0px; }
+ul#wv_actions_links li { float:left; margin:0px 25px 0px 0px; list-style:none; padding:0px; }
+ul#wv_actions_links li a { font-size:13px; font-weight:bold; text-decoration:none; color:#666; }
+ul#wv_actions_links li a:hover { text-decoration:none; }
+.wv_favorite, .wv_share, .wv_playlist, .wv_report, .wv_info { background:url(../images/channel-icon.gif) left -11px no-repeat; width:10px; height:8px; margin:0px 3px 0px 0px; padding:0px; display:inline-block; }
+.wv_share { background-position: -17px -10px; width:9px; height:9px; }
+.wv_playlist { background-position: -35px -10px; width:9px; height:9px; }
+.wv_report { background-position: -53px -10px; width:7px; height:9px; }
+.wv_info { background-position: -88px -20px; width:5px; height:9px; }
+
+ul#wv_actions_links li a:hover .wv_favorite { background:url(../images/channel-icon.gif) left -21px no-repeat; }
+ul#wv_actions_links li a:hover .wv_share { background-position: -17px -20px; width:9px; height:9px; }
+ul#wv_actions_links li a:hover .wv_playlist { background-position: -35px -20px; width:9px; height:9px; }
+ul#wv_actions_links li a:hover .wv_report { background-position: -53px -20px; width:7px; height:9px; }
+ul#wv_actions_links li a:hover .wv_info { background-position: -88px -20px; width:5px; height:9px; }
+
+ul#wv_actions_links li.selected .wv_favorite { background:url(../images/channel-icon.gif) left -31px no-repeat; }
+ul#wv_actions_links li.selected .wv_share { background-position: -17px -31px; width:9px; height:9px; }
+ul#wv_actions_links li.selected .wv_playlist { background-position: -35px -31px; width:9px; height:9px; }
+ul#wv_actions_links li.selected .wv_report { background-position: -53px -31px; width:7px; height:9px; }
+ul#wv_actions_links li.selected .wv_info { background-position: -88px -31px; width:5px; height:9px; }
+
+#wv_actions_opts { padding:8px 10px; border-width:1px 0px 0px 1px; }
+#quick_share, #playlist_form, #flag_item, #fave_video { position:relative; display:none; }
+#flag_item { line-height:17px; }
+
+#fave_video .selected { background:url(../images/channel-icon.gif) -75px -40px no-repeat; width:21px; height:8px; position:absolute; top:-16px; left:100px; border-bottom:1px solid #fff; }
+#quick_share .selected { background:url(../images/channel-icon.gif) -75px -40px no-repeat; width:21px; height:8px; position:absolute; top:-16px; left:115px; border-bottom:1px solid #fff; }
+#playlist_form .selected { background:url(../images/channel-icon.gif) -75px -40px no-repeat; width:21px; height:8px; position:absolute; top:-16px; left:200px; border-bottom:1px solid #fff; }
+#flag_item .selected { background:url(../images/channel-icon.gif) -75px -40px no-repeat; width:21px; height:8px; position:absolute; top:-16px; left:285px; border-bottom:1px solid #fff; }
+#info_div .selected { background:url(../images/channel-icon.gif) -75px -40px no-repeat; width:21px; height:8px; position:absolute; top:-16px; left:8px; border-bottom:1px solid #fff; }
+#embed_item .selected { background:url(../images/channel-icon.gif) -75px -40px no-repeat; width:21px; height:8px; position:absolute; top:-16px; left:400px; border-bottom:1px solid #fff; }
+
+.VChTitle a{ color:#444; font-size:16px; text-decoration:none; font-family:arial; font-weight:700;}
+.VChTitle a:hover { text-decoration:underline;}
+.VChInfo { color:#000; font-size:11px;}
+.VChInfo a { color:#666; text-decoration:none;}
+
+.ChUserPic { padding:1px; width:88px; border:1px solid #666; height:88px;}
+.VChUserName { font-size:15px; color:#999; font-weight:700; text-transform:capitalize;}
+
+.channel_action_links ul { margin:5px; padding:0px;}
+.channel_action_links ul li { list-style:none; padding-bottom:3px;}
+.channel_action_links ul li a { font-size:12px; color:#03c; text-decoration:none; font-family:arial;}
+.channel_action_links ul li a:hover { text-decoration:underline;}
+
+.CUContactsCon { width:60px; text-align:center; font-size:10px; margin:8px;}
+.CUContactsCon a { color:#000; text-decoration:none;} .CUContactsCon a:hover { text-decoration:underline;}
+.CUContacts { width:60px; height:60px; padding:1px; border:1px solid #999;}
+
+.CHcut{ 
+	-moz-border-bottom-colors: none;
+    -moz-border-image: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+	-webkit-border-bottom-colors: none;
+    -webkit-border-image: none;
+    -webkit-border-left-colors: none;
+    -webkit-border-right-colors: none;
+    -webkit-border-top-colors: none;
+    border-color: transparent #000000;
+    border-left: 12px solid #EFF4FC;
+    border-right: 0 solid #EFF4FC;
+    border-style: solid;
+    border-width: 23px 0 23px 12px;
+    float: left;
+    font-size: 0;
+    height: 0;
+    line-height: 0;
+    width: 0;}
+	
+.ChannelFeedsCon { border-top:1px solid #ccc; margin:5px 0 0; padding:5px 0px;}
+.ChFeedUpload { margin-left:7px; color:#444; font-family:arial; font-style:italic; font-weight:700; font-size:11px;}
+.ChFeedUpload a { text-decoration:none; color:#03c;} .ChFeedUpload a:hover { text-decoration:underline;}
+.ChFeedTitle{ float:left; font-size:11px; color:#999; margin-left:6px;}
+.ChFeedTitle a { text-decoration:none; color:#03c;}	.ChFeedTitle a:hover { text-decoration:underline;}
+.ChannelFeedsCon .DeleteIMG{ background:url(../images/icons/delete2.png) no-repeat; float:right; position:relative; left:0px; top:0px;}
+.ChFeedThumb { margin:5px 0px 10px 30px; float:left; }
+.ChFeedTime{ font-size:11px; color:#999; margin-left:6px; font-style:italic;}
+.ChFeedDec { margin-left:5px; float:left; margin-top:25px; color:#666;}

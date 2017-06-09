@@ -1,0 +1,53 @@
+{* Including Global Header *}
+{include file="$style_dir/global_header.html"}
+<body>
+<div style="background-attachment:"></div>
+<div id="container" class="containar clearfix">
+{include file="$style_dir/blocks/view_channel/channel_global.html" }
+
+    {include file="$style_dir/header.html" }
+    {include file="$style_dir/message.html"}
+    	<div id="result_cont" class="action_box full_round_10" style="display:none; margin-top:10px;"></div>
+        <div id="content"></div>
+        
+<div class="profile_con">
+	{include file="$style_dir/blocks/view_channel/channel_left.html" }
+</div> <!--profile_con end-->
+
+<div class="ch_u_vid_con full_round_10" style="float:right; margin-right:7px; margin-top:10px;">
+    	{lang code='users_contacts' assign='users_contacts'}
+        <div class="ch_vid">
+        <div class="pro_title">{$users_contacts|sprintf:$u.username}</div>
+        	{if $friends}
+            {foreach from=$friends item=friend}
+                {if $u.userid!=$friend.userid}
+                    {assign var=user_detail value=$userquery->get_user_details($friend.userid)}
+                {else}
+                    {assign var=user_detail value=$userquery->get_user_details($friend.contact_userid)}
+                {/if}
+                {include file="$style_dir/blocks/user.html" user=$user_detail}
+       		{/foreach}
+            {else}
+            <em>This user has no contacts</em>
+            {/if}
+            <div class="clearfix"></div>
+            {include file="$style_dir/blocks/pagination.html"}
+        </div> 
+</div> <!--ch_u_vid_con end-->
+        <div class="clearfix"></div>
+<div class="clearfix" style="margin-bottom:10px"></div>
+
+</div>
+            
+
+</div> <!--container end-->
+
+  <div id="footer" style="margin-top:10px;">
+    	<div class="footer">
+        	            <div class="footer_con">
+                {include file="$style_dir/footer.html"}
+            </div> <!--footer_con end-->
+</div>
+</div>
+</body>
+</html>

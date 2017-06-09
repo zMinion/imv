@@ -1,0 +1,173 @@
+<!-- Defining object type-->
+{lang code='photo' assign='object_type'}
+<div class="w_vid_title clearfix">
+	<span style="float:left;">{$photo.photo_title}</span>
+	<span style="float:right">
+        <div class="NextPrevButtons clearfix" style="margin-bottom:0px;">
+        {assign var=objctid value=$object.ci_id}
+        {assign var=collid value=$object.collection_id}
+        <ul>
+             <li>
+                {assign var=preLink value=$cbphoto->collection->get_next_prev_item($objctid,$collid,'prev')}
+                <a href="{$cbphoto->photo_links($preLink.0,'view_item')}" >Previous</a>
+            </li>
+            <li>
+                {assign var=nextLink value=$cbphoto->collection->get_next_prev_item($objctid,$collid,'next')}
+                <a href="{$cbphoto->photo_links($nextLink.0,'view_item')}" >Next</a>
+            </li>
+        </ul>
+        </div>    
+    </span>
+</div>
+
+<div class="vid_container" style="margin-top:0px;">
+
+    <div class="ViewCollCon full_round_5" align="center" style="padding:5px 0px;">
+        <a {if $nextLink} {assign var='nextItem' value=$nextLink} {else}  {assign var='nextItem' value=$preLink} {/if}
+        href="{$cbphoto->photo_links($nextItem.0,'view_item')}">{get_photo details=$photo size='l' output='html'}</a>
+    </div>
+    
+        <div class="actions clearfix full_round_5">
+        <div class="action_title">Photo Action</div>
+        <div class="act">
+		<div class="ad_f">
+			<a href="javascript:void(0)" onclick="slide_up_watch_video('#video_action_result_cont');add_to_fav('photo','{$photo.photo_id}');">{lang code='add_to_favs'}</a>
+        </div>
+        
+        <div class="report">
+        <a href="javascript:void(0)" onclick="slide_up_watch_video('#flag_item');$('#flag_item').slideToggle();">{lang code='report_this'}</a>
+        </div>
+        
+        <div class="ad_p">
+		<a href="javascript:void(0)" onclick="slide_up_watch_video('#embed_codes');$('#embed_codes').slideToggle();">{lang code='Embed Codes'}</a>
+        </div>
+        
+        <div class="share_p">
+		<a href="javascript:void(0)" onclick="slide_up_watch_video('#share_form');$('#share_form').slideToggle();">{lang code='share_this'}</a>
+        </div>
+        </div>
+    </div> <!--actions end-->
+    
+<div class="video_action_result_boxes">
+        {show_share_form id=$photo.photo_id type=Photo}
+        {show_flag_form id=$photo.photo_id type=Photo}
+        <div class="action_box" style="display:none" id="video_action_result_cont"></div>
+        <div class="action_box clearfix" style="display:none" id="embed_codes">
+        <div class="action_box_title">Embed Codes &#8212; <span class="cancel"><a href="javascript:void(0)" onclick="$('#embed_codes').slideUp();">cancel</a></span></div>
+        <div class="form_container">
+        {embedCodes assign='codes' type='all' with_url=TRUE details=$photo}
+        {foreach from=$codes item=item}
+        <div style="width:48%; display:inline-block; margin-top:5px;">
+        	<label style="text-transform:uppercase; font:bold 11px Tahoma;" for="{$item.type}">{$item.name}</label>
+            <input style="padding:4px; font:normal 11px Tahoma; width:95%" onFocus="this.select();" value="{$item.code}" id="{$item.type}" />
+		</div>            
+        {/foreach}
+        </div>
+        </div>
+</div>
+
+<div id="commentsContainer">
+	<div id="comments"></div>
+    
+     <script>
+		$(document).ready(function()
+		{ldelim}		
+			comments_voting = 'no';	
+			getComments('p','{$photo.photo_id}','{$photo.last_commented}',1,'{$photo.total_comments}','{$object_type}')
+		{rdelim}
+		);
+	</script>
+     <div id="only_comments">
+    {if $myquery->is_commentable($photo,'p')}
+    	{include file="$style_dir/blocks/comments/add_comment.html" id=$photo.photo_id type=p}
+    {else}
+    	<div class="disable_msg" align="center">{lang code='Comments disabled for this photo'}</div>
+    {/if}
+    </div>
+</div>        
+
+</div> <!--vid_container-->
+
+<div class="watch_r_con">
+
+    <div class="small_con clearfix full_round_5">   	
+    	<div class="action_title">Photo Information</div>
+        <div class="u_by_right">
+        <div class="upload_by"><a href="{$userquery->profile_link($photo.userid)}" title="{$user.username}">{$user.username|truncate:15}</a></div>
+    	<div class="small_thumb clearfic"><a href="{$userquery->profile_link($photo.userid)}"><img src="{$userquery->getUserThumb($user)}" width="75" height="75" alt="{$user.username}" /></a></div>
+            {if !$userquery->is_subscribed($user.userid)}
+            <div class="subscribe full_round_5" onClick="subscriber('{$photo.userid}','subscribe_user','video_action_result_cont')">{lang code='subscribe'}</div>
+            {else}
+            <div class="subscribe full_round_5" onClick="subscriber('{$photo.userid}','unsubscribe_user','video_action_result_cont')">{lang code='unsubscribe'}</div>
+            {/if}        
+        <div class="user_vdo">Videos ({$user.total_videos})</div>
+        <div class="user_vdo">Subscriber ({$user.subscribers})</div>
+        </div>
+   <div class="u_by_con">
+       <div class="v_views">{lang code="added"}: <strong>{$photo.date_added|nicetime}</strong></div>
+       <div class="v_views">{lang code="views"}: <strong>{$photo.views|number_format}</strong></div>
+       <div class="v_views">{lang code="comments"}: <strong>{$photo.total_comments|number_format}</strong></div>
+       <div class="rating_container clearfix">
+       {lang code="rating"}
+       {show_video_rating  rating=$photo.rating ratings=$photo.rated_by total='10' id=$photo.photo_id type=photo}
+       </div>
+   </div>
+<div class="clearfix"></div>
+   <div class="vdo_dec"><strong>{lang code="vdo_desc"}</strong><br />
+   <span style="color:#717171;">{$photo.photo_description|truncate:80}</span>
+   </div>
+   <div class="cat_tag_con">
+        <div class="genre"><strong>{lang code="Collection"}</strong><br />   
+        {$photo.collection_id|get_collection_field}
+        </div>
+	</div>
+   <div class="cat_tag_con">
+    	<div class="genre"><strong>{lang code="tags"}</strong><br />
+        {$photo.photo_tags|tags:photo}
+        </div>
+	</div>
+    
+            <div class="video_details videosharing full_round_5">
+      <strong>
+    <label for="link_video" class="emd_title">Link This Photo:</label>
+    <br />
+    <input type="text" name="link_photo" id="link_photo" style="width:99%;margin-bottom:5px; " value="{$cbcollection->collection_links($photo,'view_item')}" class="emd_input"  onclick="this.select()"/>
+      
+      	<label>{DownloadButtonP details=$photo}</label>
+</strong></div>
+     
+   </div> <!--small_con end-->
+   
+	<div class="d_buttons">
+    	<div class="comment_b selected" rel="user_videos" onclick="ToggleDetails(this,'.d_buttons div');">User</div>
+    	<div class="v_details" rel="related_videos" onclick="ToggleDetails(this,'.d_buttons div');">Related</div>
+    </div>
+    
+
+
+
+
+{get_photos assign=uphotos user=$photo.userid exclude=$photo.photo_id order=RAND() limit='20'}
+{if $uphotos}
+<div class="r_v_con full_round_5" id="user_videos" style="display:block">
+	<div class="r_v_con_inner">
+        {section name=list loop=$uphotos}
+            {include file="$style_dir/blocks/photo.html" view_photos="related_photos" photo=$uphotos[list]}
+        {/section}
+	</div>
+</div>      
+{/if}
+
+{get_photos assign=related collection=$photo.collection_id show_related=TRUE title=$photo.photo_title tags=$photo.photo_tags exclude=$photo.photo_id limit='20'}
+
+{if $related}
+<div class="r_v_con full_round_5" id="related_videos" style="display:none"> 
+	<div class="r_v_con_inner">
+        {section name=list loop=$related}
+            {include file="$style_dir/blocks/photo.html" view_photos="related_photos" photo=$related[list]}
+        {/section}
+	</div>
+</div> 
+{/if}    
+
+</div> <!--watch_r_con end-->

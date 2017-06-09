@@ -1,0 +1,23 @@
+/* 
+	Stylesheet to make Clipbucket V2 Compatible with Shitty IE7
+	If you are reading this, I beg you please update your browser to Firefox or Chrome or Safari or Opera. If you still insists using on Internet Explorer, please use Internet Explorer 8
+*/
+
+.admin_bar{ margin-top:-10px;}
+.username, .password{ margin-left:2px; margin-bottom:8px;}
+.clearfix { display:inline-block; }
+.vid_info{ height:100px;}
+.editor_p_con{ margin-top:12px;}
+.latest_vid_con{ position:relative;}
+.all_videos{ margin-bottom:5px;}
+.comment_textarea,.topic_form textarea{ overflow:hidden;}
+.u_by_right{ width:133px; height:140px;}
+.u_by_con{ height:140px;}
+.send_msg{ margin-bottom:10px; margin-right:10px;} 
+
+.quicklist_box{ width:315px;}
+.playlist_item{ width:295px;}
+.signup_left h2, .signup_right h2{ font-size:16px; margin-top:10px;}
+.add_topic_container h2, .discussions h2, .group_view h2{ font-size:16px;}
+
+.add_vdo_con_ie7{ height:350px;}

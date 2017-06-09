@@ -1,0 +1,58 @@
+<div id="collectionItemView"> 
+	<!-- this div is required for Ajax to work properly -->
+    
+    
+	<div style="width:30%;margin-top: 13px;" class="view_home">
+    
+    <div class="link_no544">
+    
+<a href="{$baseurl}" style="">{lang code="Home"}</a> <a href="{$cbcollection->collection_links($object.collection_id,'main')}" style="">{lang code="Collections"}</a>
+<a href="{$cbcollection->collection_links($object.collection_id,'view')}" style="">{$object.collection_id|get_collection_field}</a>
+    
+    </div><!--link_no544-->
+    
+    </div>
+    
+    
+    <div class="moveR" style="width:43%; margin-top: 13px; float:right;">  
+	{if $type !='videos'} 
+	
+	
+   <!-- <div class="NextPrevButtons clearfix">
+        <li class="moveL">
+        	<a href="javascript:void(0)" onClick="get_item(this,'{$object.ci_id}','{$object.collection_id}','{$type}','prev');">Previous</a>
+        </li>
+        <li class="moveR">
+        	<a href="javascript:void(0)" onClick="get_item(this,'{$object.ci_id}','{$object.collection_id}','{$type}','next');">Next</a>
+        </li>
+    </div>-->
+	
+	<div class="NextPrevButtons clearfix">
+	{assign var=objctid value=$object.ci_id}
+	{assign var=collid value=$object.collection_id}
+	 <li class="moveL">
+	 	{assign var=preLink value=$cbphoto->collection->get_next_prev_item($objctid,$collid,'prev')}
+		<a href="{$cbphoto->photo_links($preLink.0,'view_item')}" >Previous</a>
+	</li>
+	<li class="moveR">
+		{assign var=nextLink value=$cbphoto->collection->get_next_prev_item($objctid,$collid,'next')}
+		<a href="{$cbphoto->photo_links($nextLink.0,'view_item')}" >Next</a>
+	</li>
+	</div>
+	
+	
+	{/if}
+    </div>
+    
+    
+    
+    <div class="clearfix"></div>
+        {if $type == 'photos'}
+            {include file="$style_dir/view_photo.html" photo=$object user=$user}
+        {/if}
+        
+        {if $type == 'videos'}
+            {include file="$style_dir/watch_video.html" vdo=$object user=$user}
+        {/if}
+    
+</div>

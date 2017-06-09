@@ -1,0 +1,10 @@
+{if $view_group == "all_groups" OR $view_group == ""}
+    <div class="group_con clearfix">    	
+        	<div class="group_thumb"><a href="{group_link details=$group}"><img src="{$cbgroup->get_group_thumb($group)}" width="100" height="100" /></a></div>
+
+        <div class="v_p_title"><a href="{group_link details=$group}" title="{$group.group_name}">{$group.group_name|truncate:16}</a></div>
+        <div class="v_p_views">Video: {$group.total_videos|number_format}</div>
+        <div class="v_p_views">Views: {$group.total_views|number_format}</div>
+        <div class="v_p_views">Owner: <a href="{$userquery->profile_link($group)}" title="{$group.username}">{$group.username|truncate:12}</a></strong></div>
+        </div>
+{/if}

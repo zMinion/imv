@@ -1,0 +1,21 @@
+<div id="rating_container">
+<div class="T-Icon-Con">
+<div class="FavButton floatL clearfix" {if !$disable} onclick="rate('{$id}','5','{$type}')"{/if} onMouseOver="rating_over('Like this {$type}','{$disable}')" onmouseout="rating_out('{$likes} Likes, {$dislikes} Dislikes','{$disable}')">
+    <img src="{$imageurl}/dot.gif" class="LikeIMG" />
+</div>
+
+<div class="FavButton floatL" {if !$disable} onclick="rate('{$id}','1','{$type}')"{/if} onMouseOver="rating_over('Dislike this {$type}','{$disable}')" onmouseout="rating_out('{$likes} Likes, {$dislikes} Dislikes','{$disable}')"><img src="{$imageurl}/dot.gif" class="DLikeIMG" /></div>
+
+
+<div style="clear:both; height:5px;"></div>    
+<div style="width:100px; height:8px;">
+    <div class="greenBar" style="width:{$perc}"></div>
+    <div class="redBar" style="width:{$disperc}"></div>
+</div>
+</div> <!-- T-Icon-Con -->
+   
+<div id="rating_result_container" class="RatingText" style="">
+{if $rating_msg}{$rating_msg}{else}{$likes} Likes, {$dislikes} Dislikes{/if}
+</div>
+
+</div>

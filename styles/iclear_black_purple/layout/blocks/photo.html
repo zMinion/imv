@@ -1,0 +1,59 @@
+{if $view_photos == "Featured"}
+<li class="clearfix">
+	<div class="f_v_thumb_con clearfix">
+    	<div class="f_vid_thumb floatL"><a href="{$cbphoto->photo_links($photo,'view_item')}"><img src="{get_photo details=$photo}" width="120" height="90" /></a>
+        </div>
+        <div class="vid_title"><a href="{$cbphoto->photo_links($photo,'view_item')}" title="{$photo.photo_title}">{$photo.photo_title|truncate:50}</a></div>
+        <div class="vid_dec">{$photo.photo_description|description:100}</div>
+    </div> <!--f_v_thumb_con end-->
+	
+    <div class="vid_info">
+       {show_rating class='rating_small' rating=$photo.rating ratings=$photo.rated_by total='10'}
+       <div class="vid_u_name">From <a href="{$userquery->profile_link($photo)}" title="{$photo.username}">{$photo.username|truncate:15}</a></div>
+       <div class="vid_views">Views  <span style="color:#000;">{$photo.views|number_format}</span></div>
+       <div class="vid_views">Comment(s)  <span style="color:#000;">{$photo.comments_count|number_format}</span></div>
+       <div class="vid_views">Added <span style="color:#000;">{$photo.date_added|nicetime}</span></div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="vid_tags">Photos Tags {$photo.photo_tags|tags:photo}</div>    
+</li>
+{/if}
+
+{if $view_photos=="latest_photo"}
+	<div class="latest_vid">	
+    	<div class="latest_vid_thumb"><a href="{$cbphoto->photo_links($photo,'view_item')}"><img src="{get_photo details=$photo}" width="110" height="77" /></a>
+        </div>
+        <div class="l_vid_title"><a href="{$cbphoto->photo_links($photo,'view_item')}" title="{$photo.photo_title}">{$photo.photo_title|truncate:15}</a></div>    
+    </div> <!--video_list end-->
+{/if}
+
+{if $view_photos == "related_photos"}
+	<div class="r_vdo_con">
+    	<div class="r_vdo_thumb floatL">
+        	<a href="{$cbphoto->photo_links($photo,'view_item')}"><img src="{get_photo details=$photo}" width="110" height="77" /></a>
+        </div>
+        <div class="r_vdo_title">
+			<a href="{$cbphoto->photo_links($photo,'view_item')}" title="{$photo.photo_title}">{$photo.photo_title|truncate:15}</a>
+        </div>
+       <div class="r_v_views">Views: {$photo.views|number_format}</div>
+       <div class="r_v_views">Comments: {$photo.total_comments|number_format}</div>
+       <div class="r_v_views">From: 
+       <a href="{$userquery->profile_link($user)}" title="{$photo.username}">{$photo.username|truncate:15}</a>
+       </div>
+    </div> <!--r_vdo_con end-->	
+{/if}
+
+{if $view_photos == ""}
+	<div class="r_vdo_con" style="float:left; height:140px; width:120px; margin:10px;">
+    	<div class="r_vdo_thumb">
+        	<a href="{$cbphoto->photo_links($photo,'view_item')}"><img src="{get_photo details=$photo}" width="110" height="77" /></a>
+        </div>
+        <div class="r_vdo_title">
+			<a href="{$cbphoto->photo_links($photo,'view_item')}" title="{$photo.photo_title}">{$photo.photo_title|truncate:15}</a>
+        </div>
+       <div class="r_v_views">Views: {$photo.views|number_format}</div>
+       <div class="r_v_views">From: 
+       <a href="{$userquery->profile_link($user)}" title="{$photo.username}">{$photo.username|truncate:15}</a>
+       </div>
+    </div> <!--r_vdo_con end-->	
+{/if}

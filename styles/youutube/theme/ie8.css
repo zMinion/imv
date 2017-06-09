@@ -1,0 +1,25 @@
+/* CSS Document */
+.vid_thumb a img { border:medium none;}
+#upMenu:hover ul { left:75px;}  
+#upMenu ul { top:15px;}
+
+#upMenu:hover ul li { width:85px;}
+#upMenu ul { width:85px;}
+.UploadLinks ul li { list-style:none;}
+.UploadLinks ul li a { padding-left:0px;}
+#AlLMenu:hover ul li { list-style:none;}
+.AccountLinks ul li.Sign_In {border-right:none;}
+.line_45 { margin-right:10px;}
+.button_3 ul li a:hover{background:#304EA6;}
+.button_3 ul li a {filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#304ea6', endColorstr='#6891e7',GradientType=0 );}
+.button_3 ul li a:hover {filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#557cd1', endColorstr='#304ea6',GradientType=0 );}
+.accunts ul li.button_1 {filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#474747', endColorstr='#2b2b2b',GradientType=0 );}
+.accunts ul li.button_1 a:hover {filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#333333', endColorstr='#333333',GradientType=0 ); }
+.accunts ul li.button_2 {filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6891e7', endColorstr='#304ea6',GradientType=0 );}
+.accunts ul li.button_2 a:hover{filter: progid:DXImageTransform.Microsoft.Gradient(startColorStr=#557CD1, endColorStr=#304EA6);}
+
+.pagination a, .pagination .selected  {filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#e0e0e0',GradientType=1 );}
+.ProfileThumb a img { border:none;}
+.moveL a img {border:none;}
+.collect_grid img { border:none;display: block;margin: 3px;}
+.WVDec {margin-top:10px; float:left;}

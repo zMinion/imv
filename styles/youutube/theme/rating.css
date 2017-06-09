@@ -1,0 +1,28 @@
+/*  Following is styles of new like and dislike buttons*/
+.LikeIMG { background:url(../images/icons.png) -179px -91px no-repeat; width:16px; height:18px; border:none; vertical-align:middle; position:relative; font-family:Arial, Helvetica, sans-serif;}
+.FavButton:hover .LikeIMG { background-position:left -127px; cursor:pointer;}
+.DLikeIMG { background:url(../images/icons.png) -44px -142px no-repeat; width:16px; height:18px; border:none; vertical-align:middle;}
+.FavButton:hover .DLikeIMG { background-position:-18px -109px; cursor:pointer;}
+
+.greenBar { height:50%; 	background-color:#156200; 
+	background-image: -webkit-gradient(linear,left bottom,left top,from(#156200),to(#1e8c01));
+	background-image: -moz-linear-gradient(bottom, #156200, #1e8c01);
+	background-image: -o-linear-gradient(bottom, #156200, #1e8c01);
+	filter: progid:DXImageTransform.Microsoft.Gradient(startColorStr=#1e8c01, endColorStr=#156200); float:left; position:relative; border-right:1px solid white; }
+	
+	
+.redBar { height:50%; 	background-color:#990000; 
+	background-image: -webkit-gradient(linear,left bottom,left top,from(#990000),to(#c40000));
+	background-image: -moz-linear-gradient(bottom, #990000, #c40000);
+	background-image: -o-linear-gradient(bottom, #990000, #c40000);
+	filter: progid:DXImageTransform.Microsoft.Gradient(startColorStr=#c40000, endColorStr=#990000); float:left; position:relative; margin-right:-1px; }
+	
+.ratingText { font:normal 11px Arial; }
+.UserDisliked, .UserLiked { background:url(../images/thumbs.png) -36px -28px no-repeat; width:14px; height:14px; display:inline-block; *display:inline;  }
+.UserLiked { background-position:-6px -26px; }
+
+.ratingContainer .LikeBar { height:4px; background:#060; margin-bottom:1px;  }
+.ratingContainer .DislikeBar { height:4px; background:#C00;  }
+
+.LikeText, .DislikeText { display:block; margin-bottom:1px; }
+.LikeText { color:green; } .DislikeText { color:red; }

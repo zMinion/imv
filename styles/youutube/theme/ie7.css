@@ -1,0 +1,81 @@
+/* CSS Document */
+.logo { border:none; float:left;}
+.UploadLinks  { margin-top:8px;}
+.vid_thumb a img { border:none;}
+
+.videos_bom { }
+.star_text { clear:both;}
+.signup_left { clear:both;}
+.account_option_box {clear:both; }
+.account_box { }
+.stats {clear:both;  }
+.account_head_container {}
+.accntSettingHeadarrowup, .accntSettingHead { clear:both;}
+#upMenu { z-index:600;}
+#upMenu:hover ul, #AlLMenu:hover ul { top:15px; }
+
+
+.all_videos {float:left;}
+.moveL {
+    float: left; border:none;
+}
+.link_no544 a { clear:both; }
+
+.view_home { float:left; clear:both;}
+.upload_hadding { clear:both;}
+.upload_main { float:left;}
+.account_box { }
+.account_form { clear:both;}
+..manage_contacts_tbl_head {  }
+.account_box12 {}
+.myaccount_full { clear:both;}
+#upMenu:hover ul li { display:block;}
+.UploadLinks ul li { float:left;}
+
+.vid_thumb a img { float:left; border:none;}
+h1 { clear:both;}
+.feedUser a img { border:none;}
+.viewItemBox { width:300px; float:left}
+
+#guide-builder-promo { clear:both;}
+.left_side {}
+.accunts_2 { float:left; width:185px;}
+.right_side { float:left; position:relative;}
+
+
+
+
+.clearfix { display:inline-block; }
+.LogoIMG { border:none 0px;}
+
+#search_wrap { width:467px;}
+#upMenu { z-index:600;}
+#upMenu:hover ul, #AlLMenu:hover ul { top:15px; }
+.SignupIe7 { height:350px;}
+.cb-category { width:100px;}
+.VideoThumb { padding-bottom:1px;}
+.LiftSide { height:auto;}
+.ChUserCon, .GroupCon, .collectItemBox, a.CollectThumb, .NextPrevButtons ul li, .SortOpen { display:inline;}
+.SortLinks { left:0px }
+.SearchTopIE { height:30px;}
+
+
+.AccountLinks ul li.Sign_In {border-right:none;}
+
+.accunts ul li.button_2 a:hover{ background:#304EA6;}
+.button_3 ul li a {filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#304ea6', endColorstr='#6891e7',GradientType=0 );}
+.button_3 ul li a:hover {filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#557cd1', endColorstr='#304ea6',GradientType=0 );}
+
+.accunts ul li.button_1 {filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#474747', endColorstr='#2b2b2b',GradientType=0 );}
+.accunts ul li.button_1 a:hover {filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#333333', endColorstr='#333333',GradientType=0 ); }
+.accunts ul li.button_2 {filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6891e7', endColorstr='#304ea6',GradientType=0 );}
+.accunts ul li.button_2 a:hover{filter: progid:DXImageTransform.Microsoft.Gradient(startColorStr=#557CD1, endColorStr=#304EA6);}
+
+.pagination a, .pagination .selected  {filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#e0e0e0',GradientType=1 );}
+
+.moveL a img {border:none;}
+
+.ProfileThumb a img { border:none;}
+
+.collect_grid img { border:none;display: block;margin: 3px;}
+.WVDec {margin-top:10px; float:left;}

@@ -1,0 +1,40 @@
+{* Including Global Header *}
+{include file="$style_dir/global_header.html"}
+<body>
+
+<!-- ADMIN BAR -->
+{if has_access('admin_access') || $userquery->is_admin_logged_as_user()}
+<div class="admin_bar">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+          <td align="left"><a href="{$baseurl}/admin_area">{lang code='admin_panel'}</a> | <a href="{$baseurl}/admin_area/video_manager.php">{lang code='moderate_videos'}</a> | <a href="{$baseurl}/admin_area/members.php">{lang code='moderate_users'}</a></td>
+          <td align="right">
+          {if $userquery->is_admin_logged_as_user()}
+          <a href="{$baseurl}/admin_area/login_as_user.php?revert=yes">{lang code='revert_back_to_admin'}</a>
+          {/if}</td>
+    </tr>
+  </table>
+</div>
+{/if}
+<!-- ADMIN BAR -->
+
+<div class="containar"> 
+
+    {include file="$style_dir/header.html" }
+    
+    {ANCHOR place='global'}
+    
+    <!-- Message -->
+    {include file="$style_dir/message.html"}
+    {foreach from=$template_files item=file}
+        {include_template_file file=$file}				 		
+    {/foreach}
+
+    <div class="footer">
+        {include file="$style_dir/footer.html"}
+    </div> <!--footer_con end-->
+  
+</div> <!--containar end--> 
+
+</body>
+</html>

@@ -1,0 +1,19 @@
+{if userid()}
+<div class="video_con clearfix">
+		<div class="video_title"><div class="more"><a href="{$baseurl}/edit_account.php?mode=subscriptions">Manage>></a></div><span style="margin-left:10px;">{lang code='subscriptions'}</span>
+    	
+    </div>
+  
+   <!-- Listing Subscriptions-->
+   {assign var=subs_vids value=$userquery->get_subscribed_videos($userquery->userid,10)}
+   {if $subs_vids}
+   	{foreach from=$subs_vids item=video}
+      {include file="$style_dir/blocks/video.html" video=$video view_video="normal"}
+    {/foreach}
+   {else}
+   <div style="margin-left:8px;" align="center"><em>{lang code='no_new_subs_video'}</em></div>
+   {/if}
+   <!-- End Listing Subscriptions -->   
+
+</div> <!--video_con end-->
+{/if}

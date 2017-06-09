@@ -1,0 +1,41 @@
+<div class="group_view full_round_10">
+<div class="add_vdo_con_ie7">
+{include file="$style_dir/blocks/group/group_left.html"}
+</div>
+
+<div class="grp_right_column">
+    <div class="group_detail_tabs clearfix">
+        <ul>
+            <li  {if $mode == "" || $mode == "main"}class="selected"{/if}><a href="{group_link details=$group}" onClick="groupsAjax(event,this);" id="gpViewInfo">{lang code="info"}</a></li>
+            <li {if $mode == "view_topics"}class="selected"{/if}><a href="{group_link details=$group type=view_topics}" onClick="groupsAjax(event,this);" id="gpViewTopics">{lang code="grp_topics_title"}</a></li>
+            <li {if $mode == "view_members"}class="selected"{/if}><a href="{group_link details=$group type='view_members'}" id="gpAllMembers" onClick="groupsAjax(event,this);">{lang code="members"}</a></li>
+            <li {if $mode == "view_videos"}class="selected"{/if}><a href="{group_link details=$group type='view_videos'}" id="gpAllVideos" onClick="groupsAjax(event,this);">{lang code="videos"}</a></li>
+            <li {if $mode == "view_report_form"}class="selected"{/if}><a href="{group_link details=$group type='view_report_form'}" onClick="groupsAjax(event,this);" id="gpAllReport">Report</a></li>
+        </ul>
+    </div> <!-- group_detail_tabs -->
+    
+<div class="group_details clearfix">
+<div id="ajaxGroupResultContainer"> <!-- dont you dare touch this. If you did Zeus will personally kick your ASS --> 
+        <form name="add_group_videos" id="add_group_videos" method="post" action="">     
+        {foreach from=$usr_vids item=video}
+            {if $cbgroup->is_group_video($video.videoid,$group.group_id)}
+                {assign var='check_this' value='yes'}
+            {else}
+                {assign var='check_this' value=''}
+            {/if}
+            {include file="$style_dir/blocks/video.html" video=$video view_video="add_type"}    
+        {/foreach}
+        <div class="clear"></div>
+        <div align="center">
+            <input type="submit" name="add_videos" id="add_videos" value="{lang code='grp_add_vdos'}" class="send_msg" style="float:right">
+        </div>
+        </form>
+        </div>
+</div> <!-- group_details -->   
+     	
+</div> <!-- grp_right_column -->
+
+
+
+<div class="clearfix"></div>   
+</div>

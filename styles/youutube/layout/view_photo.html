@@ -1,0 +1,110 @@
+<!-- Defining object type-->
+{lang code='photo' assign='object_type'}
+ <!-- onClick="get_item(this,'{$object.ci_id}','{$object.collection_id}','{$type}','next');"-->
+<div class="moveL" style="width:660px;margin:0px 10px; float:left;">
+{assign var=json value=$photo.photo_details|json_decode}
+    <div style="background:#f3f3f3; border:1px solid #ccc; padding:10px 0px;margin-top: 11px;">
+        <div align="center"><a {if $nextLink} {assign var='nextItem' value=$nextLink} {else}  {assign var='nextItem' value=$preLink} {/if}
+        href="{$cbphoto->photo_links($nextItem.0,'view_item')}" 
+       >{get_photo details=$photo size='l' output='html'}</a></div>        
+    </div>
+        {ANCHOR place="video_bookmarks" data=$photo}
+  
+    <div class="video_actions_cont clearfix">
+        <div class="rating_container">
+        	{show_video_rating  rating=$photo.rating ratings=$photo.rated_by total='10' id=$photo.photo_id type=photo}
+        </div>
+        <div style="float:left; margin-left:5px;" class="actions clearfix">
+        <ul>
+            <li><a href="javascript:void(0)" onclick="slide_up_watch_video('#video_action_result_cont');add_to_fav('photo','{$photo.photo_id}');">{lang code='add_to_favs'}</a></li>
+            <li><a href="javascript:void(0)" onclick="slide_up_watch_video('#share_form');$('#share_form').slideToggle();">{lang code='share_this'}</a></li>
+            <li><a href="javascript:void(0)" onclick="slide_up_watch_video('#embed_codes');$('#embed_codes').slideToggle();">{lang code='Embed Codes'}</a></li>
+                        <li><a href="javascript:void(0)" onclick="slide_up_watch_video('#flag_item');$('#flag_item').slideToggle();">{lang code='report_this'}</a></li>
+
+        </ul>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="video_action_result_boxes">
+        {show_share_form id=$photo.photo_id type=Photo}
+        {show_flag_form id=$photo.photo_id type=Photo}
+        <div class="action_box" style="display:none" id="video_action_result_cont"></div>
+     
+<div class="clearfix"></div>
+ <div id="OpenShowMore" class="OpenSM" style="display:block; margin-top: 20px;">
+   
+ 	<div class="WVDec">{$photo.photo_description|description:20}</div>
+<span class="ShowMore eaf_fff bottom_round_5" onclick='$("#OpenShowMore").hide();$("#OpenShowLess").show();'>	
+<div class="dasdawq">Show more</div>
+</span>
+ </div>
+ 
+  <div id="OpenShowLess" class="OpenSM" style="display:none;margin-top: 20px;">
+ 	<div class="WVDec">{$photo.photo_description}</div>     
+    <div class="VideoCate">Collection:<br /><a href="{$photo.collection_id|get_collection_field}">{$photo.collection_id|get_collection_field}</a></div>
+    <div class="VideoCate">Tags:<br />{$photo.photo_tags|tags:photos}</div>
+<span class="ShowMore eaf_fff bottom_round_5 SM_img_closed" onclick='$("#OpenShowLess").hide();$("#OpenShowMore").show();'>	
+<div class="dasdawq">Show less</div>
+
+</span>
+ </div>
+        
+        <div class="action_box clearfix" style="display:none" id="embed_codes">
+        <div class="action_box_title">Embed Codes &#8212; <span class="cancel"><a href="javascript:void(0)" onclick="$('#embed_codes').slideUp();">cancel</a></span></div>
+        <div class="form_container">
+        {embedCodes assign='codes' type='all' with_url=TRUE details=$photo}
+        {foreach from=$codes item=item}
+        <div style="width:48%; display:inline-block; margin-top:5px;">
+        	<label style="text-transform:uppercase; font:bold 11px Tahoma;" for="{$item.type}">{$item.name}</label>
+            <input style="padding:4px; font:normal 11px Tahoma; border:1px solid #ccc; width:95%" onFocus="this.select();" value="{$item.code}" id="{$item.type}" />
+		</div>            
+        {/foreach}
+        </div>
+        </div>
+    </div>
+    <div class="borderLine"></div>
+    <div class="clearfix"></div>
+    <div style="clear:both;">
+    <div class="commentHead" style="margin-top:10px;">{lang code='comments'}</div>
+
+    <div id="comments"></div>
+    <script>
+		$(document).ready(function()
+		{ldelim}		
+			comments_voting = 'no';	
+			getComments('p','{$photo.photo_id}','{$photo.last_commented}',1,'{$photo.total_comments}','{$object_type}')
+		{rdelim}
+		);
+	</script>
+
+    {if $myquery->is_commentable($photo,'p')}
+    	{include file="$style_dir/blocks/comments/add_comment.html" id=$photo.photo_id type=p}
+    {else}
+    	<div class="disable_msg" align="center">{lang code='Comments disabled for this photo'}</div>
+    {/if}
+    </div>
+</div>
+
+<div style="width:300px; margin-right:10px; float:left; margin-top: 11px;" class="asddsf">
+
+{AD place="ad_300x250"}
+<div class="MPhotoTitle">More Photos From atulgupta12683</div>
+
+
+{get_photos assign=uphotos user=$photo.userid exclude=$photo.photo_id order=RAND() limit='5'}
+{if $uphotos}
+<div style="height:5px; clear:both"></div>
+<div class="PhotoHeading hover" onclick="$('#morePhotos').slideToggle('fast');"></div>
+<div id="morePhotos">
+{section name=list loop=$uphotos}
+	{include file="$style_dir/blocks/photo.html" display_type="related_photos" photo=$uphotos[list]}
+{/section}
+</div>
+{/if}
+
+{get_photos assign=related collection=$photo.collection_id show_related=TRUE title=$photo.photo_title tags=$photo.photo_tags exclude=$photo.photo_id limit='5'}
+{if $related}
+<div style="height:5px; clear:both"></div>
+
+{/if}    
+</div>

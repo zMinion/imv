@@ -1,0 +1,29 @@
+{* Including Global Header *}
+{include file="$style_dir/global_header.html"}
+
+{include_header file="admin_bar"}
+    <div class="contanier">
+    
+        {include file="$style_dir/header.html" }
+ <div class="clearfix"></div>       
+        {ANCHOR place='global'}
+        
+        <!-- Message -->
+      
+        {include file="$style_dir/message.html"}
+        {foreach from=$template_files item=file}
+        {include_template_file file=$file}				 		
+        {/foreach}
+
+
+ 
+<div class="clearfix"></div>  
+<div class="break10"></div>
+<div class="footer">{include file="$style_dir/footer.html"}</div><!--footer--> 
+</div>   
+
+        
+    
+     
+     
+      

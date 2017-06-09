@@ -1,0 +1,43 @@
+{if $display_type == "" || $display_type == "normal"}
+<div class="image505" style="">
+<div class="claerfix"></div>
+<div class="thumb_container_medium" style=" display:inline-block;border:1px solid #ccc;"><a href="{$cbcollection->collection_links($collection,'view')}"><img src="{$cbcollection->get_thumb($collection,'small')}" width="100" height="90"  style="border:none;"/></a>
+</div>
+<div class="box_one" style="">
+<div class="textyui"><a href="{$cbcollection->collection_links($collection,'view')}">{$collection.collection_name|truncate:20}</a></div>
+<div class="command" style="color: #666666;font-size: 11px;font-weight: normal;">{$collection.total_objects|number_format} {$collection.type|capitalize}</div> 
+<div class="command_2" style="color: #666666;font-size: 11px;font-weight: normal;">{$collection.views} {lang code="views"}</div>
+<div class="textyui"><a href="{$userquery->profile_link($collection)}" title="{$collection.username}">{$collection.username|truncate:16}</a></div>
+</div>
+</div><!--image500-->
+{/if}
+
+{if $display_type == "view_collection"}
+<div class="collectItemBox">
+	{if $type == "videos"}
+    <div class="collect_grid">
+        <a class="CollectThumb" href="{$cbphoto->photo_links($object,'view_item')}">
+            <img src="{getThumb vdetails=$object}" alt="{$object.title}" width="120" height="70" style="border:none;" />
+        </a>
+    </div> <!-- collection_{$collection.videokey} end -->
+    {/if}
+    
+    {if $type == "photos"}
+    <div class="collect_grid">
+        <a class="CollectThumb" href="{$cbphoto->photo_links($object,'view_item')}">
+            {get_photo details=$object size='t' output='html' alt=$object.photo_title}
+        </a>        
+    </div> <!-- collection_{$object.photo_key} end -->    
+    {/if}
+</div>  
+{/if}
+
+
+
+
+
+
+
+
+
+

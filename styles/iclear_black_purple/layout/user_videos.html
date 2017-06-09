@@ -1,0 +1,45 @@
+{* Including Global Header *}
+{include file="$style_dir/global_header.html"}
+<body>
+<div style="background-attachment:"></div>
+<div id="container" class="containar clearfix">
+{include file="$style_dir/blocks/view_channel/channel_global.html" }
+
+    {include file="$style_dir/header.html" }
+
+    {include file="$style_dir/message.html"}
+    	<div id="result_cont" class="action_box full_round_10" style="display:none; margin-top:10px;"></div>
+        <div id="content"></div>
+        
+<div class="profile_con">
+	{include file="$style_dir/blocks/view_channel/channel_left.html" }
+</div> <!--profile_con end-->
+
+<div class="ch_u_vid_con full_round_10" style="float:right; margin-right:4px; margin-top:10px;">
+    	<div class="pro_title">{$the_title|capitalize}</div>
+        <div class="ch_vid"> 
+    {section name=v_list loop=$videos}
+        {include file="$style_dir/blocks/video.html" video=$videos[v_list] view_video="user_video"}
+    {sectionelse}
+        <div align="center"><em>{lang code='user_have_no_vide'}</em></div>
+    {/section}
+        </div>
+        
+        <div class="clearfix"></div>
+<div class="clearfix" style="margin-bottom:10px"></div>
+{include file="$style_dir/blocks/pagination.html"}
+</div>
+    		
+
+             
+
+
+  <div id="footer" style="margin-top:10px;">
+    	<div class="footer">
+        	            <div class="footer_con">
+                {include file="$style_dir/footer.html"}
+            </div> <!--footer_con end-->
+</div>
+</div>
+</body>
+</html>

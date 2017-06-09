@@ -1,0 +1,113 @@
+
+{include file="$style_dir/global_header.html"}
+<body>
+{include file="$style_dir/blocks/view_channel/channel_global.html" }
+<div class="contanier clearfix">
+{include file="$style_dir/header.html"}  
+{include file="$style_dir/message.html"}  
+<div class="channel_inner_box" id="result_cont" style="display:none; background:#eee;"></div> 
+</div>
+<div class="body_change" style="background-color: #CCCCCC; margin-top:10px; padding:10px;">
+<div class="contanier clearfix">
+
+
+<div class="branded-page-header-container clearfix">
+<div class="upper-section ytg-box">
+<div class="channels_23" style="width:200px; float:left;">
+<div class="ProfileThumb" style="float:left;">
+<a href="{$userquery->profile_link($u)}"><img src="{avatar details=$u}" style=" width:55px; height:55px; margin:10px;" /></a>
+    </div>    
+<div class="channelHeadings" style="">
+    <a href="{$userquery->profile_link($u)}">{assign var=category value=$userquery->get_category($u.category)}{$u.username}</a>
+    </div>     
+</div><!--channels_23-->
+
+<div class="channels_24" style="float:right; width:200px; margin-bottom: 8px;">
+<div class="subscribe_21">
+<ul>			
+{if !$isSubscribed && $p.allow_subscription!='no'}
+<li><a href="javascript:void(0)" 
+onClick="subscriber('{$u.userid}','subscribe_user','result_cont')">{lang code='subscribe'}</a></li>
+{/if}
+</ul>
+</div><!--subscribe_21-->
+<div class="channels_22">
+{if $userquery->perm_check('admin_access')=='yes'}
+    
+     <div class="edit_214" style="color:#fff;">{ANCHOR place=view_channel_admin_options data=$u}</div>
+     {/if}
+</div><!--channels_22-->
+</div><!--channels_24-->
+
+
+</div><!--upper-section ytg-box-->
+<div class="clearfix"></div>
+
+            
+<div class="channels_image_45" style="">          
+<div id="channelDetailsBox" style="width:646px; float:left;">            
+    {if $mode == '' || $mode == 'contacts'}
+        {lang code='users_contacts' assign='users_contacts'}
+         <h2>{$users_contacts|sprintf:$u.username}</h2>
+        	{if $friends}
+            {foreach from=$friends item=friend}
+                {if $u.userid!=$friend.userid}
+                    {assign var=user_detail value=$userquery->get_user_details($friend.userid)}
+                {else}
+                    {assign var=user_detail value=$userquery->get_user_details($friend.contact_userid)}
+                {/if}
+                {include file="$style_dir/blocks/user.html" user=$user_detail}
+       		{/foreach}
+            {else}
+            <em>This user has no contacts</em>
+            {/if}
+        {else}
+        	<h2>{$heading}</h2>
+            {if $userSubs}
+                {foreach from=$userSubs item=item}
+                    {include file="$style_dir/blocks/user.html" user=$item}
+                {/foreach}            
+            {/if}
+        {/if}  
+<div class="clearfix"></div>
+{include file="$style_dir/blocks/pagination.html"}         
+</div><!--channelDetailsBox-->              
+                  
+            
+ <div style="float:left;margin-left: 11px;width: 290px;">
+    
+{include file="$style_dir/blocks/view_channel/channel_left.html"}
+</div> <!-- this is left side -->            
+</div><!--channels_image_45-->  
+</div><!--branded-page-header-container-->
+</div><!--contanier-->
+</div><!--body_change-->
+ <div class="contanier clearfix">
+<div class="footer">
+    {include file="$style_dir/footer.html"}
+    </div>
+</div><!----> 
+</body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

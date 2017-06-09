@@ -1,0 +1,35 @@
+#actionButtons {
+	text-align:center;
+	margin-top:30px;
+}
+/* position and dimensions of the navigator */
+.navi {
+float:left;
+height:0;
+margin:6px 3px 0;
+position:relative;
+width:42px;
+}
+
+
+/* items inside navigator */
+.navi span {
+	width:8px;
+	height:8px;
+	float:left;
+	margin:3px;
+	background:url(../images/arrow/navigator.png) 0 0 no-repeat;
+	display:block;
+	font-size:1px;
+}
+
+/* mouseover state */
+.navi span:hover {
+	background-position:0 -8px;
+	cursor:pointer;      
+}
+
+/* active state (current page state) */
+.navi span.active {
+	background-position:0 -16px;     
+}

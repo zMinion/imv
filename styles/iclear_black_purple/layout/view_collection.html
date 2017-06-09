@@ -1,0 +1,117 @@
+{lang code='collection' assign='object_type'}
+{assign var=u value=$userquery->get_user_details($c.userid)}
+<div class="vid_container">
+<div class="Collection_Top clearfix">
+	<div class="Collection_title">{$c.collection_name} - {$c.type|capitalize} ({$c.total_objects})
+    </div>
+    <div class="Buttons moveR">{uploadButton details=$c output='link' target="_blank"}</div>
+</div>    
+    <div class="ViewCollCon full_round_5 collectionTable">
+        <div id="collectionItemsList" class="clearfix">
+            {section name=list loop=$objects}
+                {include file="$style_dir/blocks/collection.html" object=$objects[list] display_type=view_collection type=$c.type}
+            {sectionelse}
+                <div align="center" style="font:bold 11px Tahoma;">{$c.collection_name} has 0 items.</div>    
+            {/section}   
+        </div>      
+    </div> <!-- ViewCollCon -->
+       
+	<div id="NewPagination" class="">{include file="$style_dir/blocks/new_pagination.html"}</div>
+
+    <div class="clearfix"></div>
+    <div class="actions clearfix full_round_5">
+        <div class="action_title">Collection Action</div>
+        <div class="act">
+		<div class="ad_f">
+			<a href="javascript:void(0)" title="{lang code='add_to_favs'}" onclick="slide_up_watch_video('#video_action_result_cont');add_to_fav('video','{$vdo.videoid}');">{lang code='add_to_favs'}</a>
+        </div>
+        
+        <div class="report">
+        <a href="javascript:void(0)" title="{lang code='report_this'}" onclick="slide_up_watch_video('#flag_item');$('#flag_item').slideToggle();">{lang code='report_this'}</a>
+        </div>
+        
+        <div class="share_p">
+		<a href="javascript:void(0)" title="{lang code='share_this'}" onclick="slide_up_watch_video('#share_form');$('#share_form').slideToggle();">{lang code='share_this'}</a>
+        </div>
+        </div>
+    </div> <!--actions end--> 
+    
+<div class="video_action_result_boxes">
+	{assign var="VCollection" value=$cbcollection->collection_links($c,'view')}
+    {show_share_form id=$c.collection_id type=Collection object_url=$VCollection}
+    {show_flag_form id=$c.collection_id type=Collection}
+    <div class="action_box full_round_5" style="display:none" id="video_action_result_cont"></div>
+</div>
+
+       {if $myquery->is_commentable($c,'collection')}
+    <div style="height:15px; clear:both;"></div> 
+    <div class="" style="">
+    
+        <div id="collectionComments">
+        	
+            <div id="comments"></div>
+			<script>
+                $(document).ready(function()
+                {ldelim}		
+                    comments_voting = 'no';	
+                    getComments('cl','{$c.collection_id}','{$c.last_commented}',1,'{$c.total_comments}','{$object_type}')
+                {rdelim}
+                );
+            </script>
+        </div>
+      </div>
+      {else}
+      <div align="center" class="no_comments">
+    	{lang code='comm_disabled_for_collection'}
+   	 </div>
+     {/if}
+    {if $myquery->is_commentable($c,'collection')}
+    	{include file="$style_dir/blocks/comments/add_comment.html" id=$c.collection_id type='cl'}
+    {else}
+    	<div class="disable_msg" align="center">{lang code='comm_disabled_for_vid'}</div>
+    {/if}
+
+</div> <!-- vid_page_conainer -->
+
+<div class="watch_r_con">
+    <div class="small_con clearfix full_round_5">   	
+    	<div class="action_title">Collection Information</div>
+        <div class="u_by_right">
+        <div class="upload_by"><a href="{$userquery->profile_link($c)}" title="{$c.username}">{$c.username|truncate:15}</a></div>
+    	<div class="small_thumb clearfic"><a href="{$userquery->profile_link($c)}"><img src="{$userquery->getUserThumb($c)}" width="75" height="75" alt="{$c.username}" /></a></div>
+            {if !$userquery->is_subscribed($c.userid)}
+            <div class="subscribe full_round_5" onClick="subscriber('{$c.userid}','subscribe_user','video_action_result_cont')">{lang code='subscribe'}</div>
+            {else}
+            <div class="subscribe full_round_5" onClick="subscriber('{$c.userid}','unsubscribe_user','video_action_result_cont')">{lang code='unsubscribe'}</div>
+            {/if}        
+        <div class="user_vdo">Videos ({$u.total_videos})</div>
+        <div class="user_vdo">Subscriber ({$u.subscribers})</div>
+        </div>
+   <div class="u_by_con">
+       <div class="v_views">{lang code="added"}: <strong>{$c.date_added|nicetime}</strong></div>
+       <div class="v_views">{lang code="views"}: <strong>{$c.views|number_format}</strong></div>
+       <div class="v_views">{lang code="comments"}: <strong>{$c.total_comments|number_format}</strong></div>
+       <div class="rating_container clearfix" style="margin-top:8px;">
+        {assign var=rating value=$cbcollection->collection_rating($c.collection_id,'collection')}
+        {if $Cbucket->configs.collection_rating}
+          {show_video_rating  rating=$c.rating ratings=$c.rated_by total='10' id=$c.collection_id type=collection}
+        {/if}
+       </div>
+   </div>
+<div class="clearfix"></div>
+   <div class="vdo_dec"><strong>{lang code="vdo_desc"}</strong><br />
+   <span style="color:#717171;">{$c.collection_description|description|truncate:80}</span>
+   </div>
+   <div class="cat_tag_con">
+        <div class="genre"><strong>{lang code="categories"}</strong><br />   
+        {$c.category|categories:collections}
+        </div>
+	</div>
+   <div class="cat_tag_con">
+    	<div class="genre"><strong>{lang code="tags"}</strong><br />
+        {$c.collection_tags|tags:collections}
+        </div>
+	</div>
+   </div> <!--small_con end-->
+   <div align="center" style="margin-top:5px; width:313px;">{AD place=ad_300x250}</div>
+</div> <!--watch_r_con end-->

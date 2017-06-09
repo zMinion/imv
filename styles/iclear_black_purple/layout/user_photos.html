@@ -1,0 +1,40 @@
+{include file="$style_dir/global_header.html"}
+<body>
+<div style="background-attachment:"></div>
+<div id="container" class="containar clearfix">
+{include file="$style_dir/blocks/view_channel/channel_global.html" }
+
+    {include file="$style_dir/header.html" }
+    {include file="$style_dir/message.html"}
+    	<div id="result_cont" class="action_box full_round_10" style="display:none; margin-top:10px;"></div>
+        <div id="content"></div>
+        
+<div class="profile_con">
+	{include file="$style_dir/blocks/view_channel/channel_left.html" }
+</div> <!--profile_con end-->
+
+<div class="ch_u_vid_con full_round_10" style="float:right; margin-right:7px; margin-top:10px;">
+        <div class="ch_vid">
+        <div class="pro_title">{$the_title}</div>
+        	{section name=p_list loop=$photos}
+       		 {include file="$style_dir/blocks/photo.html" photo=$photos[p_list]}
+    		{/section}
+            <div class="clearfix"></div>
+            {include file="$style_dir/blocks/pagination.html"} 
+        </div> 
+</div> <!--ch_u_vid_con end-->
+        <div class="clearfix"></div>
+</div>
+            
+
+</div> <!--container end-->
+
+  <div id="footer" style="margin-top:10px;">
+    	<div class="footer">
+        	            <div class="footer_con">
+                {include file="$style_dir/footer.html"}
+            </div> <!--footer_con end-->
+</div>
+</div>
+</body>
+</html>

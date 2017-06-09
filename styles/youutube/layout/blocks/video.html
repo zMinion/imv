@@ -1,0 +1,152 @@
+{if $display_type =='normal' || $display_type==''}
+<!-- Video Box -->
+
+<div id="vid_wrap_{$video.videoid}" class="{if $video_view}{$video_view}{else}grid_view {if $cur_class == 'grid_view'}{else}{$cur_class}{/if}{/if}">
+	
+    <div class="vid_thumb">
+    	<a href="{videoLink vdetails=$video}"><img src="{getThumb vdetails=$video}" width="120" height="70" title="{$video.title}" alt="{$video.title}" {ANCHOR place="video_thumb" data=$video} /></a>
+        <span class="vid_time">{$video.duration|SetTime}</span>
+		<img src="{$imageurl}/dot.gif" class="add_icon" onclick="add_quicklist(this,'{$video.videoid}')" title="Add {$video.title} to Quicklist" alt="Quicklist" />   
+        {if $video.broadcast=='private'}
+        	<a href="{videoLink vdetails=$video}"><span class="private_video">&nbsp;</span></a>
+        {/if}
+        {ANCHOR place='in_video_thumb' data=$video}    
+    </div> <!--VID_THUMB END-->
+    
+    <div class="vid_info_wrap">
+
+        <div class="Video_title"><a href="{videoLink vdetails=$video}">{$video.title|truncate:25}</a></div>
+                 
+<p id="desc" class="vid_info" style="margin:0px;color: #999999;max-height: 28px;">{$video.description|description|truncate:30}</p>
+<p class="vid_info" style="margin:0px;line-height: 14px; color:#000; font-size: 10px;">{$video.views} Views</p>    
+<p class="vid_info" style=" margin: 6px 0 0;"><a href="{$userquery->profile_link($video)}">        
+<img src="{avatar uid=$video.userid}" border="0" width="20" height="20" style="float:left;"></a>
+<a href="{$userquery->profile_link($video)}">{$video.username}</a> 
+<span class="info_list">Uploaded</span></p>
+    </div> <!--VID_INFO_WRAP END-->
+    <span class="list_up_time" style="float:right; font-size:9px; color:#999;">{$video.date_added|niceTime}</span>
+</div> <!--VID_WRAP END-->
+
+{if $only_once}
+    <div class="clearfix"></div>
+{/if}
+<!-- Video Box -->
+{/if}
+
+
+{if $display_type == "Being_Watch"}
+
+<li>
+ <div class="WCon" style=""> 
+<div class="vid_thumb">
+
+ <a href="{videoLink vdetails=$video}"><img src="{getThumb vdetails=$video}" width="96" height="54" title="{$video.title}" alt="{$video.title}" {ANCHOR place="video_thumb" data=$video} /></a>    
+<span class="vid_time">{$video.duration|SetTime}</span>    
+<img src="{$imageurl}/dot.gif" class="add_icon" onclick="add_quicklist(this,'{$video.videoid}')" title="Add {$video.title} to Quicklist" alt="Quicklist" style="border:medium none;" />  
+{if $video.broadcast=='private'}
+<a href="{videoLink vdetails=$video}"><span class="private_video">&nbsp;</span></a>
+{/if}
+{ANCHOR place='in_video_thumb' data=$video}     
+</div><!--vid_thumb -->  
+<div class="box_one" style="">
+<div class="textyui" style=""><a href="{videoLink vdetails=$video}" title="{$video.title|truncate:30}">{$video.title|truncate:10}</a></div>
+<div class="command_2" style="color: #666666;font-size: 11px;font-weight: normal;">{$video.description|description|truncate:10}</div>
+
+
+<div class="command_2" style="color: #666666;font-size: 11px;font-weight: normal;">{$video.views} Views</div>
+
+</div>     
+        
+    </div>
+</li>
+
+
+{/if}
+
+{if $display_type == 'featured_video'}
+<div class="hight_box">
+<div class="vid_thumb" style="float: left; margin: 0 6px 0 0;">
+<a href="{videoLink vdetails=$video}"><img src="{getThumb vdetails=$video}" width="120" height="70" title="{$video.title}" alt="{$video.title}" {ANCHOR place="video_thumb" data=$video} /></a>
+        <span class="vid_time">{$video.duration|SetTime}</span>
+		<img src="{$imageurl}/dot.gif" class="add_icon" onclick="add_quicklist(this,'{$video.videoid}')" title="Add {$video.title} to Quicklist" alt="Quicklist" />   
+        {if $video.broadcast=='private'}
+        	<a href="{videoLink vdetails=$video}"><span class="private_video">&nbsp;</span></a>
+        {/if}
+        {ANCHOR place='in_video_thumb' data=$video}    
+    </div> <!--VID_THUMB END-->
+<div class="right_box" style="float:left;">
+<div class="text89"><a href="{videoLink vdetails=$video}" title="{$video.title}">{$video.title|truncate:25}</a></div>
+<div class="vid" style="color: #666666;display: block;font-size: 0.9166em;height: 1.4em;line-height: 1.4em;overflow: hidden;">{$video.description|description|truncate:30}</div>
+<p class="info" style="color: #666666;display: block;font-size: 0.9166em;height: 1.4em;line-height: 1.4em;overflow: hidden; margin:0px;">{$video.views} Views</p>
+</div>
+</div>
+{/if}     
+
+
+      
+{if  $display_type =="feature"}
+<div class="videos_bom">
+<div class="vid_thumb">
+<a href="{videoLink vdetails=$video}"><img src="{getThumb vdetails=$video}" width="177" height="100" title="{$video.title}" alt="{$video.title}" {ANCHOR place="video_thumb" data=$video} /></a>
+
+<span class="vid_time">{$video.duration|SetTime}</span>
+<img src="{$imageurl}/dot.gif" class="add_icon" onclick="add_quicklist(this,'{$video.videoid}')" title="Add {$video.title} to Quicklist" alt="Quicklist" />   
+{if $video.broadcast=='private'}
+<a href="{videoLink vdetails=$video}"><span class="private_video">&nbsp;</span></a>
+{/if}
+{ANCHOR place='in_video_thumb' data=$video}    
+</div> <!--VID_THUMB END-->
+
+<div class="Videos_tittle" style="margin-top:8px;display: inline-block;">    
+<div class="gfd" style=""><a href="{videoLink vdetails=$video}" title="{$video.title}">{$video.title|truncate:15}</a></div>
+<div class="jhjhg" style="color: #666666;display: inline;font-weight: normal; font-size:11px;"><span>{$video.views}</span> view | {$video.date_added|niceTime} </div>
+<p class="font" style="margin:-1px 0 0;"><a href="{$userquery->profile_link($video)}">{$video.username}</a> </p> 
+</div><!--Videos_tittle-->
+</div><!--videos_bom-->
+{/if}    
+    
+{if $display_type == "channel_page"}
+	<li class="itemBox" onclick="loadObject(this,'videos','{$video.videoid}','viewingArea')">
+    	<div align="center"><img src="{getThumb vdetails=$video}" alt="{$video.title}" width="110" height="64" /></div>
+    </li> <!-- itemBox {$video.videokey} end -->
+{/if}     
+   
+    
+    
+    
+    
+
+
+
+
+
+{if $display_type == "WatchUserVideos"}
+<li>
+ <div class="UVCon"> 
+<div class="vid_thumb">
+
+ <a href="{videoLink vdetails=$video}"><img src="{getThumb vdetails=$video}" width="124" height="75" title="{$video.title}" alt="{$video.title}" {ANCHOR place="video_thumb" data=$video} /></a>    
+<span class="vid_time">{$video.duration|SetTime}</span>    
+<img src="{$imageurl}/dot.gif" class="add_icon" onclick="add_quicklist(this,'{$video.videoid}')" title="Add {$video.title} to Quicklist" alt="Quicklist" />  
+{if $video.broadcast=='private'}
+<a href="{videoLink vdetails=$video}"><span class="private_video">&nbsp;</span></a>
+{/if}
+{ANCHOR place='in_video_thumb' data=$video}     
+</div><!--vid_thumb -->  
+<div class="box_one" style="">
+<div class="textyui"><a href="{videoLink vdetails=$video}" title="{$video.title|truncate:30}">{$video.title|truncate:20}</a></div>
+<div class="command" style="color: #666666;font-size: 11px;font-weight: normal;">{$video.description|description|truncate:20}</div> 
+<div class="command_2" style="color: #666666;font-size: 11px;font-weight: normal;">{$video.views} Views</div>
+</div>     
+        
+    </div>
+</li>
+
+{/if}
+
+
+
+
+
+
+

@@ -1,0 +1,57 @@
+{if $display_type == "CollectionPage"}
+	<div class="videos_page">
+    	<div class="v_p_thumb"><a href="{$cbcollection->collection_links($collection,'view')}"><img src="{$cbcollection->get_thumb($collection,'small')}" width="120" height="90" />
+        <div class="vid_time">{$collection.total_objects|number_format} {$collection.type|capitalize}</div>  
+        </div> <!--v_p_thumb end-->
+ 
+        <div class="v_p_title"><a href="{$cbcollection->collection_links($collection,'view')}">{$collection.collection_name|truncate:15}</a></div>
+        <div class="v_p_views">From: 
+        <a href="{$userquery->profile_link($collection)}" title="{$collection.username}">{$collection.username|truncate:10}</a>
+        </div>
+        <div class="v_p_views">Views: {$collection.views|number_format}</div>
+        <div class="v_p_views">Comments: {$collection.total_comments|number_format}</div>
+        <div class="v_p_rating">{show_rating class='rating_small' rating=$collection.rating ratings=$collection.rated_by total='10'}</div>
+    </div> <!--video_list end-->
+{/if}
+
+{if $display_type == ""}
+	<div class="videos_page">
+    	<div class="v_p_thumb"><a href="{$cbcollection->collection_links($collection,'view')}"><img src="{$cbcollection->get_thumb($collection,'small')}" width="120" height="90" />
+        <div class="vid_time">{$collection.total_objects|number_format} {$collection.type|capitalize}</div>  
+        </div> <!--v_p_thumb end-->
+ 
+        <div class="v_p_title"><a href="{$cbcollection->collection_links($collection,'view')}">{$collection.collection_name|truncate:15}</a></div>
+        <div class="v_p_views">From: 
+        <a href="{$userquery->profile_link($collection)}" title="{$collection.username}">{$collection.username|truncate:10}</a>
+        </div>
+        <div class="v_p_views">Views: {$collection.views|number_format}</div>
+    </div> <!--video_list end-->
+{/if}
+
+{if $display_type == "view_collection"}
+
+<div class="collectItemBox">
+	{if $type == "videos"}
+    <div class="v_p_thumb">
+        <a class="CollectThumb" href="{$cbphoto->photo_links($object,'view_item')}">
+            <img src="{getThumb vdetails=$object}" alt="{$object.title}" width="128" height="75" />
+        </a>
+    </div> <!-- collection_{$collection.videokey} end -->
+    {/if}
+    
+    {if $type == "photos"}
+    <div class="v_p_thumb">
+        <a class="CollectThumb" href="{$cbphoto->photo_links($object,'view_item')}">
+            {get_photo details=$object size='t' output='html' alt=$object.photo_title}
+        </a>        
+    </div> <!-- collection_{$object.photo_key} end -->    
+    {/if}
+</div>
+
+{/if}
+
+{if $display_type == "user_collections"}
+	<div class="floatL" style="width:47px; height:47px; padding:2px; margin:0 0px 0px 0px;">
+   		<a href="{$cbcollection->collection_links($collection,'view')}" style="width:47px; height:47px;" title="{$collection.collection_name}"><img src="{$imageurl}/dot.gif" width="47" height="47" style="background:url({$cbcollection->get_thumb($collection,'small')}) center top no-repeat;" /></a>
+    </div>
+{/if}

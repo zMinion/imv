@@ -1,0 +1,48 @@
+<div id="quicklist_box"></div>
+<div class="logo_login_con">
+<a href="{$baseurl}"><div class="logo floatL"></div></a>
+</div> <!--logo_login_con end-->
+
+    
+<div class="search_bar top_round_10">
+	<div class="search_inner">    
+    <form action="{link name='search_result'}" method="get" name="search" id="search" class="search">
+        Seach <input type="text" name="query" id="query" value="" class="s_input" /> in        
+        <select name="type">
+        {foreach from=$Cbucket->search_types item=t key=stypes}
+        <option value="{$stypes}" {if $smarty.get.type==$stypes} selected="selected"{/if}>{$stypes}</option>
+        {/foreach}
+        </select>
+        <input type="submit" name="search" class="s_button" value=""  />
+    </form>
+    </div>
+</div> <!--search_bar end-->
+    
+        <div class="clearfix"></div>
+        
+<div class="nav_bar">
+    <ul>
+		{cbMenu echo='yes'}
+    </ul>
+    <div style="float:right">
+    	<div class="upload"><a href="{link name='upload'}"></a></div>
+        <div class="upload_photo"><a href="{link name='photo_upload'}"></a></div>
+    </div>
+</div> <!--nav_bar end-->
+
+<div class="bottom">
+	  <ul>
+    {if !$userquery->login_check('',true)}
+    {lang code='after_meny_guest_msg' assign='guestmsg'}
+    {link name=login assign='loginlink'}
+        <li>{$guestmsg|sprintf:$loginlink:$loginlink}</li>
+    {else}
+        <li><a href="{link name='my_account'}">{lang code='com_my_account'}</a></li>          	
+        <li><a href="{$userquery->profile_link($userquery->udetails)}">{lang code='com_my_channel'}</a></li>
+        <li><a href="{link name='my_videos'}">{lang code='com_my_videos'}</a></li>
+        <li><a href="{link name='my_favorites'}">{lang code='Favorites'}</a></li>
+        <li><a href="{link name='my_playlists'}">{lang code='playlists'}</a></li>
+		<li><a href="{link name='logout'}">{lang code='logout'}</a></li>  
+    {/if}     
+  </ul>
+</div>

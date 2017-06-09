@@ -1,0 +1,77 @@
+
+<body>
+
+<div class="contanier">
+<div class="final_footer">
+
+<a href="{$baseurl}"><div class="footer_image">
+<span style="display: block;font-size: 10px;text-align: center;line-height: 112px;">@ 2012 Clipbucket</span>
+</div></a>
+
+<div class="image_boder_shadow"></div>
+
+
+
+
+<div class="footer" align="center">
+
+<ul>
+    	{foot_menu assign='foot_menu'}
+        
+        {foreach from=$foot_menu item=fm}
+        	{if $fm.name!=''}
+            	<li><a href="{$fm.link}" {if $fm.target} target="{$fm.target}"{/if} {if $fm.onclick} onclick="{$fm.onclick}" {/if}>{$fm.name}</a></li>
+            {/if}
+        {/foreach}
+</ul>
+
+
+<div class="clearfix"></div>
+
+<div class="poweredby">  
+    <div align="center">
+        <!-- Forged by ClipBucket -->
+    	<!-- Please do not remove this unless you have license -->
+    		<div style="height: 25px;text-shadow: 0 1px 1px #FFFFFF;padding: 5px;font-weight:bold;color:#FF0000; clear:both;">Forged by</div> <a href="http://clip-bucket.com/">ClipBucket</a>
+        <!-- Forged by ClipBucket ends -->
+        
+        
+    {$Cbucket->footer()}
+        </div>
+   </div><!--poweredby--> 
+   </div><!--footer-->
+   
+   </div>
+   
+   </div><!--contanier-->
+   <div id="quicklist_box" style="display:block;"></div>
+</body>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   

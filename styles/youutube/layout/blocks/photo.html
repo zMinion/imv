@@ -1,0 +1,91 @@
+{if $display_type == "photo_page"}
+
+<div class="image500" style="-">
+<div class="claerfix"></div>
+<div class="thumb_container_medium" style=" display:inline-block;border:1px solid #ccc;"><a  href="{$cbphoto->photo_links($photo,'view_item')}">{get_photo details=$photo output='html' width="110" height="75" class='photoThumbBox moveL'}</a>
+</div>
+
+<div class="box_one" style="">
+<div class="textyui"><a href="{$cbphoto->photo_links($photo,'view_item')}" title="{$photo.photo_title}">{$photo.photo_title|truncate:15}</a></div>
+<div class="command" style="color: #666666;font-size: 11px;font-weight: normal;">{$photo.views|number_format} {lang code="views"}</div> 
+<div class="command_2" style="color: #666666;font-size: 11px;font-weight: normal;">{$photo.date_added|niceTime}</div>
+</div>
+</div><!--image500-->
+
+{/if}
+ 
+  
+{if $display_type == ""}
+<div id="vid_wrap_{$video.videoid}" class="{if $video_view}{$video_view}{else}grid_view {if $cur_class == 'grid_view'}{else}{$cur_class}{/if}{/if}">
+
+    <div class="vid_thumb" style="display:inline-block;">
+    	<a href="{$cbphoto->photo_links($photo,'view_item')}">{get_photo details=$photo output='html' width="110" height="75" class='photoThumbBox moveL'}</a>
+
+    </div> <!--VID_THUMB END-->
+
+<div class="vid_info_wrap">
+
+<div class="Video_title"><a href="{$cbphoto->photo_links($photo,'view_item')}" title="{$photo.photo_title}">{$photo.photo_title|truncate:15}</a></div>
+                 
+<p class="vid_info" style="margin:0px;line-height: 14px; color:#000; font-size: 10px;">{$photo.views} Views</p>  
+    
+<p class="vid_info" style=" margin: 6px 0 0;">       
+<a style="" href="{$userquery->profile_link($photo)}"><img src="{avatar uid=$photo.userid}" border="0" width="20" height="20" style="float:left;"></a>
+<a style="" href="{$userquery->profile_link($photo)}">{$photo.username}</a> 
+<span class="info_list">Uploaded</span></p>
+    </div> <!--VID_INFO_WRAP END-->
+    <span class="list_up_time" style="float:right; font-size:9px; color:#999;">{$photo.date_added|niceTime}</span>
+</div> <!--VID_WRAP END-->
+{/if}
+
+
+
+
+{if $display_type == 'related_photos'}
+<div class="image504" style="-moz-transition: background-color 0.18s ease 0s;border-radius: 3px 3px 3px 3px;color: #666666;display: block;font-size: 11px;padding: 6px;width:288px; float:left;">
+<div class="claerfix"></div>
+ <div class="vid_thumb" style="display:inline-block;">
+    	<a href="{$cbphoto->photo_links($photo,'view_item')}">{get_photo details=$photo output='html' width="110" height="75" class='photoThumbBox moveL'}</a>
+  
+    </div> <!--VID_THUMB END-->
+
+<div class="box_one" style=" float:left;margin-left:6px;">
+<div class="textyui"><a href="{$cbphoto->photo_links($photo,'view_item')}" title="{$photo.photo_title}">{$photo.photo_title|truncate:15}</a></div>
+<div class="command" style="color: #666666;font-size: 11px;font-weight: normal;">{$photo.views|number_format} {lang code="views"}</div> 
+<div class="command_2" style="color: #666666;font-size: 11px;font-weight: normal;">{$photo.date_added|niceTime}</div>
+</div>
+</div><!--image500-->
+{/if}
+
+
+{if $display_type == "channel_page"}
+	<li class="itemBox" onclick="loadObject(this,'photos','{$photo.photo_id}','viewingArea')">
+    	{get_photo details=$photo output='html' width='110' height='75' size='m' style='display:block;margin:0px auto;'}
+    </li> <!-- itemBox {$photo.photo_key} end -->
+{/if}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+                 
+   
+
+
+    
+    

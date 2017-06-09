@@ -1,0 +1,73 @@
+<div class="profile full_round_10 clearfix">
+        <div class="ch_user_thumb_con">
+        <div class="ch_user_user_thumb"><a href="{$userquery->profile_link($u)}"><img src="{$userquery->getUserThumb($u)}" width="100" height="100" alt="{$u.username}"></a></div>
+        </div>
+    <div class="user_link_con">
+        <div class="ch_u_name"><a href="{$userquery->profile_link($u)}">{$u.username}</a></div>
+        
+            {if !$userquery->is_subscribed($u.userid)}
+            <div class="subscribe full_round_5" onClick="subscriber('{$u.userid}','subscribe_user','result_cont')">{lang code='subscribe'}</div>
+            {else}
+            <div class="subscribe full_round_5" onClick="subscriber('{$u.userid}','unsubscribe_user','result_cont')">{lang code='unsubscribe'}</div>
+            {/if}
+
+            {assign var='channel_action_links' value=$userquery->get_channel_action_links($u)}
+            <div class="msg_con" align="center">
+            {foreach from=$channel_action_links item=link key=link_title}
+                <div><a href="{$link.link}" {if $link.onclick}onClick="{$link.onclick}"{/if}>{$link_title}</a></div>
+            {/foreach}
+        </div>
+    </div> <!--user_link_con end-->
+</div> <!--profile end-->
+
+{if $p.show_my_friends!='no'}
+    <div class="pro_details full_round_10 clearfix">
+        <div class="pro_title">{lang code="friends"} <small><a href="{link name='user_contacts'}{$u.username}">{lang code="view_all"}</a></small></div>
+        {assign var=userFriends value=$userquery->get_contacts($u.userid,'0','yes')}
+        {if $userFriends}
+            {foreach from=$userFriends item=friend}
+                {include file="$style_dir/blocks/user.html" user=$friend view_user="subscriptions"}
+            {/foreach}     
+        {else}
+            <em>User dont any friends yet.</em>
+        {/if}        
+    </div>
+{/if}
+
+{if isSectionEnabled('collections') && $p.show_my_collections!='no'}
+	<div class="pro_details full_round_10 clearfix">
+        <div class="pro_title">{lang code="Collections"}</div>
+        {assign var=climit value=func->config(collection_channel_page)}
+        {get_collections assign=userCollections user=$u.userid limit=10 order=" date_added DESC" limit=$climit}
+        {if $userCollections}
+            {foreach from=$userCollections item=collection}
+                {include file="$style_dir/blocks/collection.html" collection=$collection display_type="user_collections"}
+            {/foreach}
+            <div align="right" class="channelAjaxMoreLink clearfix" style="clear:both;display:block;margin-top:2px;"><a href="{link name='user_collections'}{$u.username}">{lang code='more'}</a> | <a href="{link name='user_fav_collections'}{$u.username}">{lang code='Favorites'}</a></div>
+        {else}
+            <em>{lang code='user_doesnt_any_collection'}</em>
+        {/if}    
+    </div>	
+{/if}
+
+{if $p.show_my_subscriptions!='no'}
+<div class="pro_details full_round_10 clearfix">
+	<div class="pro_title">{lang code='user_subscriptions' assign='users_videos'}{$users_videos|sprintf:$u.username}</div>
+    {assign var=users_items_subscriptions value=func->config(users_items_subscriptions)}
+    {assign var='usr_subs' value=$userquery->get_user_subscriptions($u.userid,$users_items_subscriptions)}
+    {if $usr_subs}
+    	{foreach from=$usr_subs item=sub}
+        	{include file="$style_dir/blocks/user.html" user=$sub view_user="subscriptions"}   
+        {/foreach}
+    {else}
+    	<em>{lang code='user_no_subscriptions' assign='user_subs'}{$user_subs|sprintf:$u.username}</em>
+    {/if}
+</div>
+{/if}
+<div class="clearfix"></div>
+{if $userquery->userid!=$u.userid}
+<div class="pro_title">
+    <a href="javascript:void(0)" onClick="$('#flag_item').slideToggle()">{lang code='report_this_user'}</a>
+</div>
+{/if}
+{show_flag_form id=$u.userid type=User}

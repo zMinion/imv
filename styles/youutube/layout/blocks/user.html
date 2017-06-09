@@ -1,0 +1,23 @@
+{if $display_type == 'channelUser'}
+<div class="image506" style="">
+<div class="claerfix"></div>
+<div class="thumb_container_medium" style=" display:inline-block;border:1px solid #ccc;"><a href="{$userquery->profile_link($user)}">
+<img src="{$userquery->getuserthumb($user)}" border="0" width="108" height="98" style="float:left;"></a>
+</div>
+
+<div class="box_one" style="">
+<div class="textyui"><a href="{$userquery->profile_link($user)}">{$user.username|truncate:15}</a></div>
+<div class="command" style="color: #666666;font-size: 11px;font-weight: normal;">{$user.total_videos|number_format} {lang code="videos"}</div> 
+<div class="command_2" style="color: #666666;font-size: 11px;font-weight: normal;">{$user.profile_hits|number_format} {lang code="views"}</div>
+<div class="time" style="color: #666666;font-size: 11px;font-weight: normal;">{$user.last_active|nicetime}</div>
+</div>
+</div><!--image500-->
+{/if}
+{if $block_type == 'IndexUser'}
+<div class="admin">
+
+<div class="thumb_container" style=" " ><a href="{$userquery->profile_link($user)}">
+<img src="{$userquery->getuserthumb($user)}" border="0" class="user_thumb_normal" width="28" height="28" style=""></a></div>
+<div class="prof_title" style=""><a href="{$userquery->profile_link($user)}">{$user.username}</a></div>
+</div><!--admin-->
+{/if}

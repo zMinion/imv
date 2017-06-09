@@ -1,0 +1,201 @@
+<script type="text/javascript">
+	{literal}
+		$(document).ready(function() {
+		
+		$("#scroller").scrollable({circular: true, mousewheel: true}).navigator().autoscroll({
+			interval: 3000		
+		});
+			
+		});	
+	{/literal}
+</script>
+
+<div class="left_con">
+
+    {ANCHOR place='recently_watched_flash'}
+ 
+ 
+    {if is_installed('editorspick')}
+    <div class="editor_p_con clearfix">
+    	<div class="title top_round_10">
+        <div id="e_p_title" class="clearfix">Editors Pick</div>
+        <div id="fu2">
+        	<a class="prev browse left"></a>
+            <div class="navi">
+                <span class="active" page="0"></span>
+                <span class="" page="1"></span>
+                <span class="" page="2"></span>
+            </div>
+            <a class="next browse right"></a>
+        </div>        
+
+        </div>
+        <div class="title_bottom"></div>
+        <div class="scrollable" id=scroller>
+			<div class="items">
+            
+                {section name=e_list loop=$editor_picks}
+             		<div>
+                    {include file="$style_dir/blocks/editor_pick/index_featured_video.html" video=$editor_picks[e_list]}
+					</div>
+                           
+                {/section}
+			</div>
+    	</div>
+    </div>  <!--editor_p_con end-->
+    {/if}
+    	<div class="clearfix"></div> 
+    <div class="con_bottom"></div>
+    
+<!--FEATURED VIDEOS-->
+        {get_videos assign=feature_vid featured="yes" limit=5 order=RAND()}
+        {if $feature_vid}
+<div class="f_video_con clearfix">
+	    <div class="title top_round_10">
+        {assign var=sorting_links value=func->sorting_links()}
+ 		{foreach from=$sorting_links item=name key=sort name=sorts}
+  		{if $name == "Featured"}
+        <div class="view_all"><a href="{link name=sort sort=$sort type=videos}">view all</a></div>
+        {/if} 
+     	{/foreach}
+        Featured Videos      
+        </div>
+        <div class="title_bottom"></div>
+        <ul>
+            {section name=feat_vid loop=$feature_vid}
+            {include file="$style_dir/blocks/feature_video.html" video=$feature_vid[feat_vid]}
+            {/section}
+        </ul>        
+        {/if}        	
+</div> <!--f_v_con end-->
+
+<!--FEATURED PHOTOS-->
+        {get_photos assign=feature_photo featured="yes" limit=5 order=RAND()}
+        {if $feature_photo}
+<div class="f_video_con clearfix">
+	    <div class="title top_round_10">
+        {assign var=sorting_links value=func->sorting_links()}
+ 		{foreach from=$sorting_links item=name key=sort name=sorts}
+  		{if $name == "Featured"}
+        <div class="view_all"><a href="{link name=sort sort=$sort type=photos}">view all</a></div>
+        {/if} 
+     	{/foreach}
+        Featured Photos      
+        </div>
+        <div class="title_bottom"></div>
+        <ul>
+        {section name=p_list loop=$feature_photo}
+        	{include file="$style_dir/blocks/photo.html" photo=$feature_photo[p_list] view_photos="Featured"}
+        {/section}
+        </ul>        
+        {/if}        	
+</div> <!--f_v_con end-->
+
+      
+</div> <!--left_con end-->
+
+<div class="right_con">
+{if !$userquery->login_check('',true)}
+	 <div class="login_con full_round_10">
+        
+        <div class="login_title">Member Login Here</div>
+
+        <form action="{link name='login'}" method="post" name="login" style="margin:0px; padding:0px;">
+            <div class="username"> 
+            Username<br />
+            <input type="text" value="" id="username" name="username" class="s_input" />
+            </div>  
+            <div class="password">  
+            Password<br /> 
+            <input type="password" value="" id="password" name="password" />
+            </div>
+			<div class="clearfix"></div>
+             <div class="forgot">                           
+                <a href="{$baseurl}/forgot.php">Forgot Your Password?</a> or <a href="{link name='signup'}" class="signup_button">Sign up</a>
+             </div>
+             <input type="submit" value="" id="login" name="login" class="login_button" />
+		</form>
+        </div> <!--login_con END--> 
+        {else}
+		<div class="my_status">
+        	<div class="s_title">My Status</div>
+            <ul>
+                {assign var=u value=$userquery->udetails}  
+                <li>{lang code='com_my_videos'}: <span style="color:#000;">{$u.total_videos}</span></li>
+                 <li>Videos Watch: <span style="color:#000;">{$u.total_watched}</span></li>      
+                <li>{assign var=friends value=$userquery->get_contacts($userquery->userid,0,'yes',TRUE)}
+                {lang code='friends'}: <span style="color:#000;">{$friends}</span></li>
+                <li>{lang code='profile_views'}: <span style="color:#000;">{$u.profile_hits}</span></li>
+           </ul>
+        </div> <!--my_status end-->
+        
+        <div class="my_inbox">
+        	<div class="s_title">My Inbox</div>
+            <ul>
+                <li><a href="{link name='inbox'}">{lang code='messages'} ({$cbpm->get_new_messages()})</a></li>
+                        <li><a href="{link name='my_contacts'}">{lang code='friend_requests'} ({$userquery->get_pending_contacts($userquery->userid,0,true)})</a></li>
+            </ul>
+        </div> <!--my_inbox end-->
+        {/if}
+    <div class="clearfix"></div>
+    
+    {assign var=videos_items_columns value=func->config(videos_items_columns)}
+    {get_videos assign=ran_vids limit=1 order="RAND()"} 
+    {if $ran_vids}
+         <div class="vid_con full_round_10 clearfix" style="margin-top:18px;">
+     	<div class="vid_con_title">{lang code="rand_vids"}</div>
+        <div class="random_player">
+            {section name=uvlist loop=$ran_vids}
+                {include file="$style_dir/blocks/video.html" video=$ran_vids[uvlist] view_video="random_video"}
+            {/section}
+            {/if}
+    	</div> <!--random_player end-->
+     </div> <!--vid_con end-->
+     
+        <div class="ad full_round_10">{AD place=ad_300x250}</div>
+        
+        <!-- Getting Latest videos -->
+     <div class="vid_con full_round_10 clearfix">
+     	<div class="vid_con_title">Latest Videos</div>
+           
+    {assign var=videos_items_columns value=func->config(videos_items_columns)}
+    {get_videos assign=ran_vids limit=$videos_items_columns order="date_added DESC"} 
+    {if $ran_vids}
+        <div class="latest_vid_con">
+    {section name=uvlist loop=$ran_vids}
+        {include file="$style_dir/blocks/video.html" video=$ran_vids[uvlist] view_video="latest_video"}
+    {/section}
+    {/if}
+        </div> <!--latest_vid end-->
+        <div class="all_videos"><a href="{link name="videos"}">All Videos</a></div>
+     </div> <!--vid_con end-->
+     
+     <div class="vid_con full_round_10 clearfix">
+     	<div class="vid_con_title">Latest Photos</div>
+           
+		{get_photos assign=photos limit="16" order=" date_added DESC"} 
+        <div class="latest_vid_con">
+            {section name=p_list loop=$photos}
+                {include file="$style_dir/blocks/photo.html" photo=$photos[p_list] view_photos="latest_photo"}
+            {sectionelse}
+                {lang code='No Photo Found'}
+            {/section}
+        </div> <!--latest_vid end-->
+        <div class="all_videos"><a href="{link name="videos"}">All Videos</a></div>
+     </div> <!--vid_con end-->     
+     
+          <div class="vid_con full_round_10 clearfix">
+     	<div class="vid_con_title">Random Channel</div>
+           
+{get_users assign=users limit="6" order=" doj DESC"}
+        
+    {section name=u_list loop=$users}
+        {include file="$style_dir/blocks/user.html" user=$users[u_list] view_user="randam_channel"}
+    {sectionelse}
+    	{lang code='No Channel Found'}
+    {/section}
+        
+        <div class="all_videos"><a href="{link name="channels"}">All Channels</a></div>
+     </div> <!--vid_con end-->
+        
+</div> <!--right_con end-->

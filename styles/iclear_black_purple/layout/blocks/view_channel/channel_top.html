@@ -1,0 +1,24 @@
+<!-- Channel Top -->
+<div class="channel_box2 full_round_10" style="margin-top:10px;">
+    <div class="channel_inner_box channel_top">
+    	
+        <div class="channel_top_user_box">
+            <div class="usr_channel">{lang code='user_s_channel' assign='usr_s'}{$usr_s|sprintf:$u.username} </div>
+        </div>
+        {assign var='channel_links' value=$userquery->get_inner_channel_top_links($u)}
+        <ul class="top_channel_links">
+            {if isSectionEnabled('feeds')}
+            <li><a href="#" rel="userFeeds" id="userFeedTab" onClick="channelObjects(this,'#channelDetailsBox','feeds','{$u.userid}'); return false;">{lang code='activity'}</a></li>
+            {/if}
+            <li><a href="#" rel="infoDIV"  id="infoTab" onClick="channelObjects(this,'#channelDetailsBox','info','{$u.userid}'); return false;">{lang code='info'}</a></li>
+            {if isSectionEnabled('videos')}
+            <li><a href="#" onClick="channelObjects(this,'#channelDetailsBox','videos','{$u.userid}'); return false;">{lang code='videos'}</a></li>{/if}
+            {if isSectionEnabled('groups')}
+            <li><a href="#" onClick="channelObjects(this,'#channelDetailsBox','groups','{$u.userid}'); return false;">{lang code='groups'}</a></li>{/if}
+            {if isSectionEnabled('photos')}
+            <li><a href="#" onClick="channelObjects(this,'#channelDetailsBox','photos','{$u.userid}'); return false;">{lang code='photos'}</a></li>{/if}
+        </ul>
+        <div class="clearfix"></div>
+    </div>
+</div>
+<!-- Channel Top End-->
